@@ -13,6 +13,7 @@ public class LoginResponse {
 		this.email = email;
 		this.id = id;
 	}
+	
 	public String getToken() {
 		return token;
 	}
