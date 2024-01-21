@@ -1,5 +1,7 @@
 package com.openclassrooms.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +22,9 @@ public class Theme {
 	
 	@NotNull(message = "title may not be null")
 	private String title;
+	
+	@ManyToMany(mappedBy = "themes")
+    private List<User> users;
 
 	public Long getId() {
 		return id;
