@@ -2,22 +2,16 @@ package com.openclassrooms.DTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import com.openclassrooms.models.Theme;
 
 public class UserDTO {
 
 	private Long id;
 
-	@NotNull
-	@Email
 	private String email;
 
-	@NotNull
 	private String username;
 
-	@NotNull
 	private String password;
 
 	private List<Theme> themes;

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,13 +19,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "email may not be null")
 	private String email;
 	
-	@NotNull(message = "username may not be null")
 	private String username;
 	
-	@NotNull(message = "password may not be null")
 	private String password;
 	
 	@ManyToMany

@@ -3,7 +3,6 @@ package com.openclassrooms.models;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,10 +16,8 @@ public class Theme {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "description may not be null")
 	private String description;
 	
-	@NotNull(message = "title may not be null")
 	private String title;
 	
 	@ManyToMany(mappedBy = "themes")
