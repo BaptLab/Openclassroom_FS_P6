@@ -4,13 +4,11 @@ import jakarta.validation.constraints.NotNull;
 
 public class RegisterRequest {
 
-	@NotNull
+	
 	private String email;
 	
-	@NotNull
 	private String username;
 	
-	@NotNull
 	private String password;
 
 	public String getEmail() {

@@ -2,6 +2,7 @@ package com.openclassrooms.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -20,13 +21,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "email may not be null")
 	private String email;
 	
-	@NotNull(message = "username may not be null")
 	private String username;
 	
-	@NotNull(message = "password may not be null")
 	private String password;
 	
 	@ManyToMany

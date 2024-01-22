@@ -1,5 +1,7 @@
 package com.openclassrooms.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,11 +17,12 @@ public class Theme {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "description may not be null")
 	private String description;
 	
-	@NotNull(message = "title may not be null")
 	private String title;
+	
+	@ManyToMany(mappedBy = "themes")
+    private List<User> users;
 
 	public Long getId() {
 		return id;
