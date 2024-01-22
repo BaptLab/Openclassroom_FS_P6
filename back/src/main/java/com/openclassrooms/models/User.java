@@ -2,10 +2,8 @@ package com.openclassrooms.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.List;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;

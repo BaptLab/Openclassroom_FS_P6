@@ -1,7 +1,5 @@
 package com.openclassrooms.payload.request;
 
-import jakarta.validation.constraints.NotNull;
-
 public class LoginRequest {
 
 	private String email;

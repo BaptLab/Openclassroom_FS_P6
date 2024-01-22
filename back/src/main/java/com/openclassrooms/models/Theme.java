@@ -3,8 +3,6 @@ package com.openclassrooms.models;
 import java.util.List;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 

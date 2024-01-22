@@ -1,10 +1,7 @@
 package com.openclassrooms.payload.request;
 
-import jakarta.validation.constraints.NotNull;
-
 public class RegisterRequest {
 
-	
 	private String email;
 	
 	private String username;
