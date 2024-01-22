@@ -52,14 +52,6 @@ public class UserService {
 		return user;
 	}
 
-	public UserDTO userToDTO(User user) {
-		UserDTO userDTO = new UserDTO();
-		userDTO.setEmail(user.getEmail());
-		userDTO.setUsername(user.getUsername());
-		List<Theme> themes = new ArrayList<>(user.getThemes());
-		userDTO.setThemes(themes);
-		return userDTO;
-	}
 
 	public User update(Long id, User updatingUser) {
 		User existingUser = this.findById(id);
@@ -82,17 +74,7 @@ public class UserService {
 	    return userDTO;
 	}
 	
-	public User registerRequestToUser(RegisterRequest registerRequest) {
-		User user = new User();
-		user.setEmail(registerRequest.getEmail());
-		user.setPassword(registerRequest.getPassword());
-		user.setUsername(registerRequest.getUsername());
-		return user;
-	}
 	
-	public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
 
 	public LoginResponse loginUser(LoginRequest loginRequest, User user) {
 		if (JwtUtils.isPwdMatching(loginRequest, user)) {
