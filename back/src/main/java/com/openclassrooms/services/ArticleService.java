@@ -2,7 +2,9 @@ package com.openclassrooms.services;
 
 import java.util.List;
 
+import com.openclassrooms.DTO.ArticleDTO;
 import com.openclassrooms.models.Article;
+import com.openclassrooms.models.User;
 import com.openclassrooms.repository.ArticleRepository;
 
 public class ArticleService {
@@ -27,5 +29,13 @@ public class ArticleService {
 
 	public Article save(Article article) {
 		return articleRepository.save(article);
+	}
+	
+	public Article convertDtoToArticle(User user, ArticleDTO articleDTO) {
+		Article article = new Article();
+		article.setTitle(articleDTO.getTitle());
+		article.setTheme(articleDTO.getTheme());
+		article.setDescription(articleDTO.getDescription());
+		return article;
 	}
 }

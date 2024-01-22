@@ -6,26 +6,31 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ARTICLES")
+@Table(name = "COMMENTS")
 @EntityListeners(AuditingEntityListener.class)
-public class Article {
+public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	private String title;
-
-	private String theme;
-
-	private String description;
-
+	
 	@Column(name = "user_id")
 	private Long userId;
 
+	@Column(name = "article_id")
+	private Long articlId;
+	
+	private String description;
+	
 	@CreatedDate
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
@@ -42,28 +47,28 @@ public class Article {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getTheme() {
-		return theme;
-	}
-
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
-
 	public Long getUserId() {
 		return userId;
 	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public Long getArticlId() {
+		return articlId;
+	}
+
+	public void setArticlId(Long articlId) {
+		this.articlId = articlId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -81,13 +86,5 @@ public class Article {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
 }

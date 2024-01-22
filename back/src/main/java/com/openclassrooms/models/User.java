@@ -9,37 +9,33 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 @Entity
 @Table(name = "USERS")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String email;
-	
+
 	private String username;
-	
+
 	private String password;
-	
+
 	@ManyToMany
-    @JoinTable(
-        name = "USER_THEMES",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "theme_id"))
-    private List<Theme> themes;
-	
+	@JoinTable(name = "USER_THEMES", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "theme_id"))
+	private List<Theme> themes;
+
 	@CreatedDate
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-	
+
 	@UpdateTimestamp
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -71,7 +67,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
 	public List<Theme> getThemes() {
 		return themes;

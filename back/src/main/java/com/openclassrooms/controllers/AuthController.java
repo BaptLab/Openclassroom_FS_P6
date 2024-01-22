@@ -1,5 +1,6 @@
 package com.openclassrooms.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,8 @@ import com.openclassrooms.services.UserService;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-
+	
+	@Autowired
 	private UserService userService;
 
 	@PostMapping("/login")

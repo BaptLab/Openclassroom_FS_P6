@@ -52,7 +52,6 @@ public class UserService {
 		return user;
 	}
 
-
 	public User update(Long id, User updatingUser) {
 		User existingUser = this.findById(id);
 		if (existingUser != null) {
@@ -64,17 +63,15 @@ public class UserService {
 	}
 
 	public UserDTO userToDTO(User user) {
-	    UserDTO userDTO = new UserDTO();
-	    userDTO.setEmail(user.getEmail());
-	    userDTO.setUsername(user.getUsername());
+		UserDTO userDTO = new UserDTO();
+		userDTO.setEmail(user.getEmail());
+		userDTO.setUsername(user.getUsername());
 
-	    List<Theme> themes = new ArrayList<>(user.getThemes());
-	    userDTO.setThemes(themes);
+		List<Theme> themes = new ArrayList<>(user.getThemes());
+		userDTO.setThemes(themes);
 
-	    return userDTO;
+		return userDTO;
 	}
-	
-	
 
 	public LoginResponse loginUser(LoginRequest loginRequest, User user) {
 		if (JwtUtils.isPwdMatching(loginRequest, user)) {
@@ -86,6 +83,13 @@ public class UserService {
 		} else {
 			throw new BadRequest();
 		}
+	}
+
+	public User updateUser(User user, UserDTO userDto) {
+		user.setEmail(userDto.getEmail());
+		user.setUsername(userDto.getUsername());
+		user.setThemes(userDto.getThemes());
+		return user;
 	}
 
 }

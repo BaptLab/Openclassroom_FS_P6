@@ -1,6 +1,7 @@
 package com.openclassrooms.services;
 
 import com.openclassrooms.models.Theme;
+import com.openclassrooms.models.User;
 import com.openclassrooms.repository.ThemeRepository;
 
 import java.util.List;
@@ -28,6 +29,10 @@ public class ThemeService {
     public Theme save(Theme theme) {
         return themeRepository.save(theme);
     }
+
+	public void subscribeToTheme(User user, Theme theme) {
+		
+	}
 
 
 }
