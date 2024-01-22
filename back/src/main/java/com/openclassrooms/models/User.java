@@ -1,9 +1,10 @@
 package com.openclassrooms.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,6 +28,13 @@ public class User {
 	
 	@NotNull(message = "password may not be null")
 	private String password;
+	
+	@ManyToMany
+    @JoinTable(
+        name = "USER_THEMES",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "theme_id"))
+    private List<Theme> themes;
 	
 	@CreatedDate
 	@Column(name = "created_at")
@@ -66,6 +74,15 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+
+	public List<Theme> getThemes() {
+		return themes;
+	}
+
+	public void setThemes(List<Theme> themes) {
+		this.themes = themes;
 	}
 
 	public LocalDateTime getCreatedAt() {

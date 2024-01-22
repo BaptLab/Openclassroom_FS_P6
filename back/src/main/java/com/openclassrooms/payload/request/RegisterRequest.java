@@ -1,6 +1,6 @@
 package com.openclassrooms.payload.request;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class RegisterRequest {
 

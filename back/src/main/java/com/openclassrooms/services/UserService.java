@@ -1,9 +1,20 @@
 package com.openclassrooms.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.openclassrooms.DTO.UserDTO;
+import com.openclassrooms.exceptions.BadRequest;
+import com.openclassrooms.models.Theme;
 import com.openclassrooms.models.User;
+import com.openclassrooms.payload.request.LoginRequest;
+import com.openclassrooms.payload.request.RegisterRequest;
+import com.openclassrooms.payload.response.LoginResponse;
 import com.openclassrooms.repository.UserRepository;
+import com.openclassrooms.utils.JwtUtils;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
 public class UserService {
 
@@ -36,6 +47,41 @@ public class UserService {
 			existingUser.setUsername(updatingUser.getUsername());
 		}
 		return existingUser;
+	}
+
+	public UserDTO userToDTO(User user) {
+	    UserDTO userDTO = new UserDTO();
+	    userDTO.setEmail(user.getEmail());
+	    userDTO.setUsername(user.getUsername());
+
+	    List<Theme> themes = new ArrayList<>(user.getThemes());
+	    userDTO.setThemes(themes);
+
+	    return userDTO;
+	}
+	
+	public User registerRequestToUser(RegisterRequest registerRequest) {
+		User user = new User();
+		user.setEmail(registerRequest.getEmail());
+		user.setPassword(registerRequest.getPassword());
+		user.setUsername(registerRequest.getUsername());
+		return user;
+	}
+	
+	public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+	public LoginResponse loginUser(LoginRequest loginRequest, User user) {
+		if (JwtUtils.isPwdMatching(loginRequest, user)) {
+			Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(),
+					user.getPassword());
+			String token = JwtUtils.generateToken(authentication);
+			LoginResponse loginResponse = new LoginResponse(token, user.getUsername(), user.getEmail(), user.getId());
+			return loginResponse;
+		} else {
+			throw new BadRequest();
+		}
 	}
 
 }
