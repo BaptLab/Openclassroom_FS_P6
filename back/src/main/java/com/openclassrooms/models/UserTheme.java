@@ -1,6 +1,5 @@
 package com.openclassrooms.models;
 
-
 import jakarta.persistence.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -42,6 +41,5 @@ public class UserTheme {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 }

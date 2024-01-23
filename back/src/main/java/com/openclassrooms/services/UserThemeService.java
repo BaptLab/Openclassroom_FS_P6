@@ -1,10 +1,13 @@
 package com.openclassrooms.services;
 
+import org.springframework.stereotype.Service;
+
 import com.openclassrooms.models.Theme;
 import com.openclassrooms.models.User;
 import com.openclassrooms.models.UserTheme;
 import com.openclassrooms.repository.UserThemeRepository;
 
+@Service
 public class UserThemeService {
 
 	private UserThemeRepository userThemeRepository;

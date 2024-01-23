@@ -2,12 +2,7 @@ package com.openclassrooms.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.openclassrooms.exceptions.BadRequest;
 import com.openclassrooms.exceptions.NotFound;
 import com.openclassrooms.models.User;
@@ -17,7 +12,6 @@ import com.openclassrooms.payload.response.LoginResponse;
 import com.openclassrooms.payload.response.MessageResponse;
 import com.openclassrooms.services.UserService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -39,6 +33,7 @@ public class AuthController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
+		System.out.println("////////////////////////////////////////");
 		if (userService.findByEmail(registerRequest.getEmail()) != null) {
 			throw new BadRequest();
 		} else {
@@ -46,5 +41,10 @@ public class AuthController {
 			userService.save(user);
 			return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 		}
+	}
+	
+	@GetMapping("")
+	public @ResponseBody String greeting() {
+		return "Hello, World";
 	}
 }

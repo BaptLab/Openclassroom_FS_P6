@@ -6,6 +6,9 @@ import com.openclassrooms.repository.ThemeRepository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ThemeService {
 
     private final ThemeRepository themeRepository;

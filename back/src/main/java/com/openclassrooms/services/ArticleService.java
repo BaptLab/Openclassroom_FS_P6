@@ -2,11 +2,14 @@ package com.openclassrooms.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.openclassrooms.DTO.ArticleDTO;
 import com.openclassrooms.models.Article;
 import com.openclassrooms.models.User;
 import com.openclassrooms.repository.ArticleRepository;
 
+@Service
 public class ArticleService {
 
 	private ArticleRepository articleRepository;

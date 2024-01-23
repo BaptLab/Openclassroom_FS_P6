@@ -1,6 +1,7 @@
 package com.openclassrooms.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,26 +14,29 @@ import jakarta.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class Article {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	private String title;
+    private String title;
 
-	private String theme;
+    private String theme;
 
-	private String description;
+    @Column(name = "user_id")
+    private Long userId;
 
-	@Column(name = "user_id")
-	private Long userId;
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
-	@CreatedDate
-	@Column(name = "created_at")
-	private LocalDateTime createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
-	@UpdateTimestamp
-	@Column(name = "updated_at")
-	private LocalDateTime updatedAt;
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
+    private String description;
 
 	public Long getId() {
 		return id;

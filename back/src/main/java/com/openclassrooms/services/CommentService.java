@@ -2,11 +2,14 @@ package com.openclassrooms.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.openclassrooms.DTO.CommentDTO;
 import com.openclassrooms.models.Comment;
 import com.openclassrooms.models.User;
 import com.openclassrooms.repository.CommentRepository;
 
+@Service
 public class CommentService {
 	private CommentRepository commentRepository;
 
@@ -32,7 +35,7 @@ public class CommentService {
 
 	public Comment convertDtoToComment(User user, CommentDTO commentDTO) {
 		Comment comment = new Comment();
-		comment.setArticlId(commentDTO.getArticleId());
+		comment.setArticleId(commentDTO.getArticleId());
 		comment.setUserId(commentDTO.getUserId());
 		comment.setDescription(commentDTO.getDescription());
 		return comment;

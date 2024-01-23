@@ -12,6 +12,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,25 +21,29 @@ import jakarta.persistence.Table;
 @EntityListeners(AuditingEntityListener.class)
 public class Comment {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name = "user_id")
-	private Long userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "article_id")
-	private Long articlId;
-	
-	private String description;
-	
-	@CreatedDate
-	@Column(name = "created_at")
-	private LocalDateTime createdAt;
+    @Column(name = "user_id")
+    private Long userId;
 
-	@UpdateTimestamp
-	@Column(name = "updated_at")
-	private LocalDateTime updatedAt;
+    @Column(name = "article_id")
+    private Long articleId;
+
+    @ManyToOne
+    @JoinColumn(name = "article_id", insertable = false, updatable = false)
+    private Article article;
+
+    private String description;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
 	public Long getId() {
 		return id;
@@ -55,12 +61,12 @@ public class Comment {
 		this.userId = userId;
 	}
 
-	public Long getArticlId() {
-		return articlId;
+	public Long getArticelId() {
+		return articleId;
 	}
 
-	public void setArticlId(Long articlId) {
-		this.articlId = articlId;
+	public void setArticleId(Long articlId) {
+		this.articleId = articlId;
 	}
 
 	public String getDescription() {

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openclassrooms.DTO.;
 import com.openclassrooms.DTO.CommentDTO;
 import com.openclassrooms.exceptions.BadRequest;
 import com.openclassrooms.models.Comment;

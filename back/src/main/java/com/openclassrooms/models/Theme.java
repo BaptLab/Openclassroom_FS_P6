@@ -19,7 +19,7 @@ public class Theme {
 	
 	private String title;
 	
-	@ManyToMany(mappedBy = "themes")
+	@ManyToMany(mappedBy = "themes", cascade = CascadeType.ALL)
     private List<User> users;
 
 	public Long getId() {
