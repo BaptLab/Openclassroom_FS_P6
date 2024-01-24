@@ -1,5 +1,17 @@
 <div class="center">
   <img src="/assets/logo_p6.png" alt="logo" />
-  <h1>Welcome to MDD</h1>
-  <button mat-raised-button color="primary" (click)="start()">Commencer</button>
+  <div class="authentication-options">
+    <app-custom-button
+      [buttonText]="'Se connecter'"
+      [buttonColor]="'white'"
+      [isDisabled]="false"
+      [route]="'/login'"
+    ></app-custom-button>
+    <app-custom-button
+      [buttonText]="'S\'inscrire'"
+      [buttonColor]="'white'"
+      [isDisabled]="false"
+      [route]="'/register'"
+    ></app-custom-button>
+  </div>
 </div>
