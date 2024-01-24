@@ -97,8 +97,6 @@ public class JwtUtils {
 	}
 
 	public static boolean isPwdMatching(LoginRequest loginRequest, User user) {
-		System.out.print(loginRequest.getPassword());
-		System.out.print(user.getPassword());
 		return passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
 	}
 

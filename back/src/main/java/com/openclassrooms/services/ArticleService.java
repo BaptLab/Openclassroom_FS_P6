@@ -39,6 +39,7 @@ public class ArticleService {
 		article.setTitle(articleDTO.getTitle());
 		article.setTheme(articleDTO.getTheme());
 		article.setDescription(articleDTO.getDescription());
+		article.setUserId(user.getId());
 		return article;
 	}
 }

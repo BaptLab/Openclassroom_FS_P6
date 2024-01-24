@@ -19,7 +19,7 @@ import com.openclassrooms.services.ArticleService;
 import com.openclassrooms.services.UserService;
 
 @RestController
-@RequestMapping("/api ")
+@RequestMapping("/api")
 public class ArticleController {
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class ArticleController {
 		}
 	}
 	
-	@GetMapping("/articles/{id}")
+	@GetMapping("/article/{id}")
 	public ResponseEntity<?> findById(@PathVariable("id") Long articleId) {
 		try {
 			Article article = articleService.findById(articleId);
@@ -50,9 +50,9 @@ public class ArticleController {
 	}
 	
 	@PostMapping("/{id}/article")
-	public ResponseEntity<?> createComment(@PathVariable("id") String id, @RequestBody ArticleDTO articleDTO) {
+	public ResponseEntity<?> createComment(@PathVariable("id") String userId, @RequestBody ArticleDTO articleDTO) {
 	    try {
-	        User user = userService.findById(Long.valueOf(id));
+	        User user = userService.findById(Long.valueOf(userId));
 	        Article article = articleService.convertDtoToArticle(user, articleDTO);
 	        Article savedArticle = articleService.save(article);
 	        return ResponseEntity.ok().body(savedArticle);

@@ -1,11 +1,9 @@
 package com.openclassrooms.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.openclassrooms.DTO.UserDTO;
 import com.openclassrooms.exceptions.BadRequest;
-import com.openclassrooms.models.Theme;
 import com.openclassrooms.models.User;
 import com.openclassrooms.payload.request.LoginRequest;
 import com.openclassrooms.payload.request.RegisterRequest;
@@ -19,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+	
+	static private JwtUtils jwtUtils;
 
 	private UserRepository userRepository;
 
@@ -49,29 +49,27 @@ public class UserService {
 	public User registerRequestToUser(RegisterRequest registerRequest) {
 		User user = new User();
 		user.setEmail(registerRequest.getEmail());
-		user.setPassword(registerRequest.getPassword());
+		String encryptedPwd = JwtUtils.pwdEncoder(registerRequest.getPassword());
+		user.setPassword(encryptedPwd);
 		user.setUsername(registerRequest.getUsername());
 		return user;
 	}
 
-	public User update(Long id, User updatingUser) {
+	public User update(Long id, UserDTO updatingUser) {
 		User existingUser = this.findById(id);
 		if (existingUser != null) {
 			existingUser.setEmail(updatingUser.getEmail());
 			existingUser.setUsername(updatingUser.getUsername());
-			existingUser.setThemes(updatingUser.getThemes());
+			existingUser.setId(updatingUser.getId());
 		}
 		return existingUser;
 	}
 
 	public UserDTO userToDTO(User user) {
 		UserDTO userDTO = new UserDTO();
+		userDTO.setId(user.getId());
 		userDTO.setEmail(user.getEmail());
 		userDTO.setUsername(user.getUsername());
-
-		List<Theme> themes = new ArrayList<>(user.getThemes());
-		userDTO.setThemes(themes);
-
 		return userDTO;
 	}
 
@@ -90,7 +88,7 @@ public class UserService {
 	public User updateUser(User user, UserDTO userDto) {
 		user.setEmail(userDto.getEmail());
 		user.setUsername(userDto.getUsername());
-		user.setThemes(userDto.getThemes());
+		user.setId(userDto.getId());
 		return user;
 	}
 

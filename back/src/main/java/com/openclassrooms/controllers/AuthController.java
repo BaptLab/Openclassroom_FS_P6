@@ -21,7 +21,6 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> authenticateUser(@RequestBody LoginRequest loginRequest) {
-		System.out.println("////////////////////////////////////////");
 		User user = userService.findByEmail(loginRequest.getEmail());
 		if (user != null) {
 			LoginResponse loginResponse = userService.loginUser(loginRequest, user);
@@ -33,7 +32,6 @@ public class AuthController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
-		System.out.println("////////////////////////////////////////");
 		if (userService.findByEmail(registerRequest.getEmail()) != null) {
 			throw new BadRequest();
 		} else {
@@ -43,8 +41,4 @@ public class AuthController {
 		}
 	}
 	
-	@GetMapping("")
-	public @ResponseBody String greeting() {
-		return "Hello, World";
-	}
 }

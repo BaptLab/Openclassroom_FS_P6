@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.DTO.CommentDTO;
+import com.openclassrooms.models.Article;
 import com.openclassrooms.models.Comment;
 import com.openclassrooms.models.User;
 import com.openclassrooms.repository.CommentRepository;
@@ -33,10 +34,10 @@ public class CommentService {
 		return this.commentRepository.findAll();
 	}
 
-	public Comment convertDtoToComment(User user, CommentDTO commentDTO) {
+	public Comment convertDtoToComment(User user, Article article, CommentDTO commentDTO) {
 		Comment comment = new Comment();
-		comment.setArticleId(commentDTO.getArticleId());
-		comment.setUserId(commentDTO.getUserId());
+		comment.setArticleId(article.getId());
+		comment.setUserId(user.getId());
 		comment.setDescription(commentDTO.getDescription());
 		return comment;
 	}

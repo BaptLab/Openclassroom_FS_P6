@@ -31,7 +31,7 @@ public class SpringSecurityConfig {
 		JwtAuthenticationFilter authenticationFilter = new JwtAuthenticationFilter();
 
 		return http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/auth/*", "api/user/*").permitAll().anyRequest().authenticated())
+				.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/auth/*").permitAll().anyRequest().authenticated())
 				.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 				.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class).build();

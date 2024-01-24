@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ARTICLES")
@@ -18,8 +19,10 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String title;
 
+    @NotNull
     private String theme;
 
     @Column(name = "user_id")
@@ -36,6 +39,8 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    @NotNull
+    @Column(columnDefinition = "TEXT")
     private String description;
 
 	public Long getId() {

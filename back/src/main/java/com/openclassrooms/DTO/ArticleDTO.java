@@ -1,18 +1,18 @@
 package com.openclassrooms.DTO;
 
+import jakarta.validation.constraints.NotNull;
+
 public class ArticleDTO {
 	
-	private Long id;
+    @NotNull
 	private String title;
+    
+    @NotNull
 	private String theme;
+    
+    @NotNull
 	private String description;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}

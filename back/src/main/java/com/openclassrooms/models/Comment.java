@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "COMMENTS")
@@ -25,9 +26,11 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "user_id")
     private Long userId;
 
+    @NotNull
     @Column(name = "article_id")
     private Long articleId;
 
@@ -35,6 +38,7 @@ public class Comment {
     @JoinColumn(name = "article_id", insertable = false, updatable = false)
     private Article article;
 
+    @NotNull
     private String description;
 
     @CreatedDate
@@ -91,6 +95,18 @@ public class Comment {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+
+	public Long getArticleId() {
+		return articleId;
 	}
 	
 }

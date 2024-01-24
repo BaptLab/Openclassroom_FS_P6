@@ -48,8 +48,7 @@ public class ThemeController {
 	}
 
 	@PostMapping("/{id}/subscribe/{themeId}")
-	public ResponseEntity<?> subscribeToTheme(@PathVariable("id") Long userId, @PathVariable("themeId") Long themeId,
-			@RequestBody UserDTO userDto) {
+	public ResponseEntity<?> subscribeToTheme(@PathVariable("id") Long userId, @PathVariable("themeId") Long themeId) {
 		try {
 			User user = userService.findById(userId);
 			if (user == null) {
