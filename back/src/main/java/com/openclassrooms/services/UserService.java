@@ -3,7 +3,6 @@ package com.openclassrooms.services;
 import java.util.List;
 
 import com.openclassrooms.DTO.UserDTO;
-import com.openclassrooms.exceptions.BadRequest;
 import com.openclassrooms.models.User;
 import com.openclassrooms.payload.request.LoginRequest;
 import com.openclassrooms.payload.request.RegisterRequest;
@@ -81,7 +80,7 @@ public class UserService {
 			LoginResponse loginResponse = new LoginResponse(token, user.getUsername(), user.getEmail(), user.getId());
 			return loginResponse;
 		} else {
-			throw new BadRequest();
+			return null;
 		}
 	}
 
