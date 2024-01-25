@@ -11,3 +11,16 @@
   flex-direction: row;
   gap: 50px;
 }
+
+@media only screen and (max-width: 650px) {
+  img {
+    width: auto;
+    height: 35%;
+    margin-bottom: 30px;
+  }
+
+  .authentication-options {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

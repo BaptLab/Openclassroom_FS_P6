@@ -1,0 +1,30 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form h2 {
+  margin-bottom: 19px;
+}
+
+form .field-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form #submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

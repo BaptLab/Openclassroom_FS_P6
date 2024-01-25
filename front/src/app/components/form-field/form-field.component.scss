@@ -1,0 +1,12 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.form-field input {
+  height: 50px;
+  border-radius: 8px;
+  width: 250px;
+  border: 1px solid black;
+}

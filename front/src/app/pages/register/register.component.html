@@ -1,1 +1,14 @@
-<p>register works!</p>
+<app-header></app-header>
+<main>
+  <app-back-btn></app-back-btn>
+  <app-dynamic-form
+    [formTitle]="'S\inscrire'"
+    [formFields]="[
+      { label: 'Nom d\'utilisateur' },
+      { label: 'Adresse e-mail' },
+      { label: 'Mot de passe' }
+    ]"
+    [submitBtnText]="'S\'inscrire'"
+    [onSubmit]="register"
+  ></app-dynamic-form>
+</main>

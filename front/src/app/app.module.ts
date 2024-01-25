@@ -14,14 +14,36 @@ import { ArticleCreationComponent } from './pages/article-creation/article-creat
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HeaderComponent } from './components/header/header.component';
+import { BackBtnComponent } from './components/back-btn/back-btn.component';
+import { FormFieldComponent } from './components/form-field/form-field.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent, LoginComponent, ArticlesComponent, ThemesComponent, ArticleDetailsComponent, ArticleCreationComponent, ProfileComponent, NotFoundComponent, CustomButtonComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent,
+    ArticlesComponent,
+    ThemesComponent,
+    ArticleDetailsComponent,
+    ArticleCreationComponent,
+    ProfileComponent,
+    NotFoundComponent,
+    CustomButtonComponent,
+    HeaderComponent,
+    BackBtnComponent,
+    FormFieldComponent,
+    DynamicFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

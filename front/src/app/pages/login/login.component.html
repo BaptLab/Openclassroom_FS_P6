@@ -1,1 +1,13 @@
-<p>login works!</p>
+<app-header></app-header>
+<main>
+  <app-back-btn></app-back-btn>
+  <app-dynamic-form
+    [formTitle]="'Se connecter'"
+    [formFields]="[
+      { label: 'E-mail ou nom d\'utilisateur' },
+      { label: 'Mot de passe' }
+    ]"
+    [submitBtnText]="'Se connecter'"
+    [onSubmit]="login"
+  ></app-dynamic-form>
+</main>
