@@ -4,10 +4,10 @@
   <app-dynamic-form
     [formTitle]="'Se connecter'"
     [formFields]="[
-      { label: 'E-mail ou nom d\'utilisateur' },
-      { label: 'Mot de passe' }
+      { label: 'E-mail ou nom d\'utilisateur', formDataProperty: 'email' },
+      { label: 'Mot de passe', formDataProperty: 'password' }
     ]"
     [submitBtnText]="'Se connecter'"
-    [onSubmit]="login"
+    (formSubmit)="login($event)"
   ></app-dynamic-form>
 </main>

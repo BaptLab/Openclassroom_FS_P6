@@ -1,14 +1,10 @@
-<div class="form-container">
-  <form>
-    <h2>{{ formTitle }}</h2>
-    <div class="field-container">
-      <ng-container *ngFor="let field of formFields">
-        <app-form-field [label]="field.label"></app-form-field>
-      </ng-container>
-    </div>
-    <app-custom-button
-      [buttonText]="submitBtnText"
-      type="submit"
-    ></app-custom-button>
-  </form>
-</div>
+<form (submit)="submitForm($event)">
+  <ng-container *ngFor="let field of formFields">
+    <app-form-field
+      [label]="field.label"
+      [formDataProperty]="field.formDataProperty"
+      (inputChange)="updateFormData(field.formDataProperty, $event)"
+    ></app-form-field>
+  </ng-container>
+  <app-custom-button type="submit">{{ submitBtnText }}</app-custom-button>
+</form>

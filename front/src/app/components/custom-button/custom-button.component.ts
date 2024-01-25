@@ -10,11 +10,11 @@ export class CustomButtonComponent {
   @Input() buttonText: string = 'Click Me';
   @Input() buttonColor: string = 'primary';
   @Input() isDisabled: boolean = false;
-  @Input() route: string = '/';
+  @Input() clickHandler: () => void = () => {};
 
   constructor(private router: Router) {}
 
-  navigateTo(destination: string): void {
-    this.router.navigate([destination]);
+  handleButtonClick(): void {
+    this.clickHandler();
   }
 }

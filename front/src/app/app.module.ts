@@ -19,6 +19,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { BackBtnComponent } from './components/back-btn/back-btn.component';
 import { FormFieldComponent } from './components/form-field/form-field.component';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

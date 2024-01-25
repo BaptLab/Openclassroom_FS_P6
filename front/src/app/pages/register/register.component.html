@@ -1,14 +1,10 @@
-<app-header></app-header>
-<main>
-  <app-back-btn></app-back-btn>
-  <app-dynamic-form
-    [formTitle]="'S\inscrire'"
-    [formFields]="[
-      { label: 'Nom d\'utilisateur' },
-      { label: 'Adresse e-mail' },
-      { label: 'Mot de passe' }
-    ]"
-    [submitBtnText]="'S\'inscrire'"
-    [onSubmit]="register"
-  ></app-dynamic-form>
-</main>
+<app-dynamic-form
+  [formTitle]="'Se connecter'"
+  [formFields]="[
+    { label: 'Nom d\'utilisateur', formDataProperty: 'username' },
+    { label: 'Adresse e-mail', formDataProperty: 'email' },
+    { label: 'Mot de passe', formDataProperty: 'password' }
+  ]"
+  [submitBtnText]="'Se connecter'"
+  (formSubmit)="register($event)"
+></app-dynamic-form>

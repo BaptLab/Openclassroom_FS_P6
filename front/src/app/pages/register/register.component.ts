@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/HttpRequests/auth.service';
+import { RegisterRequest } from 'src/app/interfaces/auth.interface';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
-  ngOnInit(): void {}
-  register(): void {
-    console.log('yet to code !');
+  register(formData: any): void {
+    const registerRequest: RegisterRequest = {
+      email: formData['Adresse e-mail'],
+      username: formData["Nom d'utilisateur"],
+      password: formData['Mot de passe'],
+    };
   }
 }

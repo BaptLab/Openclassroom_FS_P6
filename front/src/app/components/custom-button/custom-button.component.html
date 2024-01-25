@@ -1,8 +1,3 @@
-<button
-  mat-raised-button
-  [color]="buttonColor"
-  [disabled]="isDisabled"
-  (click)="navigateTo(route)"
->
+<button mat-raised-button [color]="buttonColor" (click)="handleButtonClick()">
   {{ buttonText }}
 </button>
