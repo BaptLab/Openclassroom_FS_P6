@@ -15,3 +15,6 @@ export interface AuthSuccess {
   email: string;
   id: number;
 }
+export interface RegisterSuccess {
+  message: string;
+}
