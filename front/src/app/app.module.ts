@@ -21,6 +21,8 @@ import { FormFieldComponent } from './components/form-field/form-field.component
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
