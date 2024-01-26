@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/HttpRequests/auth.service';
+import { AuthService } from 'src/services/HttpRequests/auth.service';
 import {
   RegisterRequest,
-  RegisterSuccess,
+  ReturnedMessage,
 } from 'src/app/interfaces/auth.interface';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,7 +20,7 @@ export class RegisterComponent {
     };
 
     this.authService.register(registerRequest).subscribe(
-      (registerSuccess: RegisterSuccess) => {
+      (registerSuccess: ReturnedMessage) => {
         console.log('Register successful!', registerSuccess);
         // You can access the 'message' property here if needed
         console.log('Message:', registerSuccess.message);

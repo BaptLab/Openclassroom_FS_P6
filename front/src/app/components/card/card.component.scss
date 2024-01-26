@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 161px;
+  min-width: 391px;
+  padding: 20px 11px;
+  background-color: #f5f5f5;
+  margin: 6px;
+}
+
+/* your.component.scss */
+mat-card-header .mat-card-header-text {
+  margin: 0; /* Set margin to 0 */
+}
+
+.card-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-description {
+  margin-bottom: 10px;
+}

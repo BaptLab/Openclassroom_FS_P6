@@ -1,4 +1,15 @@
 <mat-toolbar color="none" class="header">
   <img src="/assets/logo_p6.png" />
-  <div *ngIf="sessionService.isLogged">Hello World !</div>
+  <div *ngIf="sessionService.isLogged" class="header-nav">
+    <a
+      [class.active]="isActive(['/articles', '/article/**'])"
+      (click)="navigateToArticles()"
+      >Articles</a
+    >
+
+    <a [class.active]="isActive(['/themes'])" (click)="navigateToThemes()"
+      >Thèmes</a
+    >
+    <img src="/assets/user_icon_p6.png" />
+  </div>
 </mat-toolbar>

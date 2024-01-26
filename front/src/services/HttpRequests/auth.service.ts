@@ -4,8 +4,8 @@ import {
   AuthSuccess,
   LoginRequest,
   RegisterRequest,
-  RegisterSuccess,
-} from '../interfaces/auth.interface';
+  ReturnedMessage,
+} from 'src/app/interfaces/auth.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,8 +26,8 @@ export class AuthService {
 
   public register(
     registerRequest: RegisterRequest
-  ): Observable<RegisterSuccess> {
-    return this.httpClient.post<RegisterSuccess>(
+  ): Observable<ReturnedMessage> {
+    return this.httpClient.post<ReturnedMessage>(
       `${this.baseUrl}${this.pathService}/register`,
       registerRequest
     );

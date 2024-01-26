@@ -5,4 +5,25 @@ img {
 
 .header {
   height: 97px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-nav {
+  display: flex;
+  gap: 25px;
+}
+
+.header-nav a {
+  cursor: pointer;
+}
+
+.active {
+  color: #6c5ccf;
+}
+
+.header-nav img {
+  width: auto;
+  height: 30px;
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/HttpRequests/auth.service';
-import { UserService } from 'src/app/HttpRequests/user.service';
+import { AuthService } from 'src/services/HttpRequests/auth.service';
+import { UserService } from 'src/services/HttpRequests/user.service';
 import { AuthSuccess, LoginRequest } from 'src/app/interfaces/auth.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { SessionService } from 'src/services/session/session.service';
@@ -32,6 +32,7 @@ export class LoginComponent {
           console.log(this.sessionsService.isLogged);
           this.sessionsService.logIn(user);
           console.log(this.sessionsService.isLogged);
+          this.router.navigate(['/themes']);
         });
         localStorage.setItem('user_id', authSuccess.id.toString());
         localStorage.setItem('user_token', authSuccess.token);

@@ -23,6 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthGuard } from './guards/unauth.guard';
+import { CardComponent } from './components/card/card.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     BackBtnComponent,
     FormFieldComponent,
     DynamicFormComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +55,12 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     MatToolbarModule,
     HttpClientModule,
     FormsModule,
+    MatCardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AuthGuard,
+    UnauthGuard,
   ],
   bootstrap: [AppComponent],
 })
