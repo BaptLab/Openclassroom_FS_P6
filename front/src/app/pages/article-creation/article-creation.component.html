@@ -1,1 +1,12 @@
+<!-- article-creation.component.html -->
 <app-header></app-header>
+<app-dynamic-form
+  [formTitle]="'Créer un nouvel article'"
+  [formFields]="[
+    { label: '', formDataProperty: 'theme' },
+    { label: '', formDataProperty: 'title' },
+    { label: '', formDataProperty: 'description' }
+  ]"
+  [submitBtnText]="'Créer'"
+  (formSubmit)="postArticle($event)"
+></app-dynamic-form>

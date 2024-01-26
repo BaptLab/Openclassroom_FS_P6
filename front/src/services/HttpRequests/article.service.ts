@@ -20,6 +20,16 @@ export class ArticleService {
     );
   }
 
+  public postArticle(
+    userId: string | null,
+    article: Article
+  ): Observable<Article> {
+    return this.httpClient.post<Article>(
+      `${this.baseUrl}${this.pathService}/${userId}/article`,
+      article
+    );
+  }
+
   public subscribeToTheme(
     userId: number,
     articleId: number

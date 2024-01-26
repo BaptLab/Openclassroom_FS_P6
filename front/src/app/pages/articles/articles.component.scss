@@ -10,3 +10,23 @@
   display: flex;
   width: 49%;
 }
+
+.article-page-subheader {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+#sort-btn img {
+  width: auto;
+  height: 15px;
+  transform: rotate(-90deg);
+}
+
+#sort-btn span {
+  margin-right: 5px;
+}
+
+#sort-btn {
+  cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article.interface';
 import { ArticleService } from 'src/services/HttpRequests/article.service';
 
@@ -10,7 +11,7 @@ import { ArticleService } from 'src/services/HttpRequests/article.service';
 export class ArticlesComponent implements OnInit {
   @Input() articles: Article[] = [];
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
     this.articleService.getArticles().subscribe(
@@ -22,5 +23,9 @@ export class ArticlesComponent implements OnInit {
         // Handle error if needed
       }
     );
+  }
+
+  navigateToArticleCreation(): void {
+    this.router.navigate(['/article/creation']);
   }
 }

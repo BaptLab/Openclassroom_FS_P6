@@ -1,6 +1,18 @@
 <app-header></app-header>
 <main class="articles-container">
-  <ng-container *ngFor="let article of articles">
-    <app-article class="article-card" [article]="article"></app-article>
-  </ng-container>
+  <div class="article-page-subheader">
+    <app-custom-button
+      [buttonText]="'Créer un article'"
+      [clickHandler]="navigateToArticleCreation"
+    ></app-custom-button>
+    <div id="sort-btn">
+      <span class="sort-btn-text">Trier par</span>
+      <img src="/assets/back_icon_p6.png" />
+    </div>
+  </div>
+  <div class="articles-container">
+    <ng-container *ngFor="let article of articles">
+      <app-article class="article-card" [article]="article"></app-article>
+    </ng-container>
+  </div>
 </main>
