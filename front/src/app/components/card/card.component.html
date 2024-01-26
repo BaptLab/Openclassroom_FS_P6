@@ -1,11 +1,9 @@
 <mat-card class="card">
-  <mat-card-header class="card-header">
-    <mat-card-title class="card-title">{{ theme.title }}</mat-card-title>
-  </mat-card-header>
+  <h2 class="card-title">{{ theme.title }}</h2>
   <mat-card-content class="card-description">
     {{ theme.description }}
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="card-btn-container">
     <app-custom-button
       class="card-btn"
       [buttonText]="'S\abonner'"

@@ -1,9 +1,12 @@
 .themes-container {
   padding: 20px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 6px;
 }
 
-.themes-container .theme-card {
-  width: 45%;
+.theme-card {
+  display: flex;
+  width: 49%;
 }

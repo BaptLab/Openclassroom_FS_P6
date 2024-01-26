@@ -27,6 +27,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { UnauthGuard } from './guards/unauth.guard';
 import { CardComponent } from './components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatCardModule } from '@angular/material/card';
     FormFieldComponent,
     DynamicFormComponent,
     CardComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,

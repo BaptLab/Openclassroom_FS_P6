@@ -1,4 +1,6 @@
 <app-header></app-header>
-<ng-container class="themes-container" *ngFor="let theme of themes">
-  <app-card class="theme-card" [theme]="theme"></app-card>
-</ng-container>
+<main class="themes-container">
+  <ng-container *ngFor="let theme of themes">
+    <app-card class="theme-card" [theme]="theme"></app-card>
+  </ng-container>
+</main>

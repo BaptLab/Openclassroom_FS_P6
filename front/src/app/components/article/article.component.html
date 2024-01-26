@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <h2 class="card-title">{{ article.title }}</h2>
+  <div class="card-subheader">
+    <span class="subheader-text article-date">{{ article.updatedAt }}</span>
+
+    <span *ngIf="!author" class="subheader-text article-author"
+      >Loading...</span
+    >
+    <span *ngIf="author" class="subheader-text article-author">{{
+      author
+    }}</span>
+  </div>
+  <mat-card-content class="card-description">
+    {{ article.description }}
+  </mat-card-content>
+</mat-card>
