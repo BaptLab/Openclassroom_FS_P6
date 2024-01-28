@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class ArticleController {
@@ -50,7 +51,7 @@ public class ArticleController {
     }
 
     @PostMapping("/{id}/article")
-    public ResponseEntity<?> createComment(@PathVariable("id") String userId, @RequestBody ArticleDTO articleDTO) {
+    public ResponseEntity<?> createArticle(@PathVariable("id") String userId, @RequestBody ArticleDTO articleDTO) {
         try {
             User user = userService.findById(Long.valueOf(userId));
             Article article = articleService.convertDtoToArticle(user, articleDTO);

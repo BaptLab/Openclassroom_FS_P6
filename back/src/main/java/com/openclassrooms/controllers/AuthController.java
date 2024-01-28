@@ -11,6 +11,7 @@ import com.openclassrooms.payload.response.LoginResponse;
 import com.openclassrooms.payload.response.MessageResponse;
 import com.openclassrooms.services.UserService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
