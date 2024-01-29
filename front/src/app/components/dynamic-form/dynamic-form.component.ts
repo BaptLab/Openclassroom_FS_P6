@@ -7,6 +7,7 @@ interface FormField {
   placeholder: string;
   inputType?: string | undefined;
   selectOptions?: { value: any; label: string }[] | undefined;
+  value?: string;
 }
 
 @Component({
@@ -16,7 +17,7 @@ interface FormField {
 })
 export class DynamicFormComponent implements OnInit {
   @Input() formTitle: string = 'Title';
-  @Input() submitBtnText: string = 'Btn text';
+  @Input() submitBtnText: string = '';
   @Output() formSubmit = new EventEmitter<any>();
 
   @Input() formFields: FormField[] = [];
@@ -40,6 +41,11 @@ export class DynamicFormComponent implements OnInit {
         }));
       });
     }
+
+    // Initialize form data with default values or values passed from formFields
+    this.formFields.forEach((field) => {
+      this.formData[field.formDataProperty] = field.value || '';
+    });
   }
 
   updateFormData(property: string, value: any): void {

@@ -20,6 +20,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/themes']);
   }
 
+  navigateToProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
   isActive(routes: string[]): boolean {
     return routes.some((route) => this.router.isActive(route, true));
   }

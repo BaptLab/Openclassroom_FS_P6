@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article.interface';
 import { ArticleService } from 'src/services/HttpRequests/article.service';
 
@@ -8,12 +9,12 @@ import { ArticleService } from 'src/services/HttpRequests/article.service';
   styleUrls: ['./article-creation.component.scss'],
 })
 export class ArticleCreationComponent implements OnInit {
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
-  userId: string | null = '';
+  userId: string | null = null;
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('user_id');
+    const userIdString = localStorage.getItem('user_id');
   }
 
   postArticle(formData: Article): void {
@@ -22,6 +23,7 @@ export class ArticleCreationComponent implements OnInit {
       .subscribe((article: Article) => {
         if (article != null) {
           console.log('Article successfully created!');
+          this.router.navigate(['/articles']);
         } else {
           console.error('Error creating the article :/');
         }

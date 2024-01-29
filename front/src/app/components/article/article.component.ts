@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/services/HttpRequests/user.service';
@@ -21,14 +22,15 @@ export class ArticleComponent implements OnInit {
 
   author: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadAuthor();
+    console.log(this.article);
   }
 
   private loadAuthor(): void {
-    this.userService.getUser(this.article.userId).subscribe(
+    this.userService.getUser(this.article.userId.toString()).subscribe(
       (user: User) => {
         this.author = user.username;
       },
@@ -36,5 +38,9 @@ export class ArticleComponent implements OnInit {
         console.error('Error fetching author:', error);
       }
     );
+  }
+
+  public navigateToArticleDetails(): void {
+    this.router.navigate(['/article', this.article.id]);
   }
 }

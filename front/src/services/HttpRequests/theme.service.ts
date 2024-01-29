@@ -19,7 +19,7 @@ export class ThemeService {
   }
 
   public subscribeToTheme(
-    userId: number,
+    userId: number | null,
     themeId: number
   ): Observable<ReturnedMessage> {
     return this.httpClient.post<ReturnedMessage>(
@@ -29,7 +29,7 @@ export class ThemeService {
   }
 
   public unsubscribeToTheme(
-    userId: number,
+    userId: number | null,
     themeId: number
   ): Observable<ReturnedMessage> {
     return this.httpClient.delete<ReturnedMessage>(

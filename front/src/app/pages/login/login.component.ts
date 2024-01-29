@@ -28,12 +28,14 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe(
       (authSuccess: AuthSuccess) => {
         console.log('Login successful !', authSuccess);
-        this.userService.getUser(authSuccess.id).subscribe((user: User) => {
-          console.log(this.sessionsService.isLogged);
-          this.sessionsService.logIn(user);
-          console.log(this.sessionsService.isLogged);
-          this.router.navigate(['/themes']);
-        });
+        this.userService
+          .getUser(authSuccess.id.toString())
+          .subscribe((user: User) => {
+            console.log(this.sessionsService.isLogged);
+            this.sessionsService.logIn(user);
+            console.log(this.sessionsService.isLogged);
+            this.router.navigate(['/themes']);
+          });
         localStorage.setItem('user_id', authSuccess.id.toString());
         localStorage.setItem('user_token', authSuccess.token);
       },

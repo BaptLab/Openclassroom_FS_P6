@@ -12,14 +12,17 @@ export class UserService {
   private baseUrl = 'http://localhost:8080';
   private pathService = '/api/user';
 
-  public getUser(userId: number): Observable<User> {
+  public getUser(userId: string | null): Observable<User> {
     return this.httpClient.get<User>(
       `${this.baseUrl}${this.pathService}/${userId}`
     );
   }
 
-  public updateUser(userId: number, updatedUser: User): Observable<User> {
-    return this.httpClient.post<User>(
+  public updateUser(
+    userId: string | null,
+    updatedUser: User
+  ): Observable<User> {
+    return this.httpClient.put<User>(
       `${this.baseUrl}${this.pathService}/${userId}`,
       updatedUser
     );

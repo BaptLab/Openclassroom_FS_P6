@@ -31,7 +31,7 @@ export class ArticleService {
   }
 
   public subscribeToTheme(
-    userId: number,
+    userId: string | null,
     articleId: number
   ): Observable<ReturnedMessage> {
     return this.httpClient.post<ReturnedMessage>(
@@ -41,7 +41,7 @@ export class ArticleService {
   }
 
   public unsubscribeToTheme(
-    userId: number,
+    userId: string | null,
     articleId: number
   ): Observable<ReturnedMessage> {
     return this.httpClient.delete<ReturnedMessage>(

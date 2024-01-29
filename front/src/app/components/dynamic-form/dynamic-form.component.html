@@ -10,5 +10,8 @@
       [selectOptions]="field.selectOptions"
     ></app-form-field>
   </ng-container>
-  <app-custom-button type="submit">{{ submitBtnText }}</app-custom-button>
+  <app-custom-button
+    type="submit"
+    [buttonText]="submitBtnText"
+  ></app-custom-button>
 </form>
