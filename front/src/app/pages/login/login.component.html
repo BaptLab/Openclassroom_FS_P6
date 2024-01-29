@@ -4,8 +4,18 @@
   <app-dynamic-form
     [formTitle]="'Se connecter'"
     [formFields]="[
-      { label: 'E-mail ou nom d\'utilisateur', formDataProperty: 'email' },
-      { label: 'Mot de passe', formDataProperty: 'password' }
+      {
+        label: 'E-mail ou nom d\'utilisateur',
+        formDataProperty: 'email',
+        placeholder: '',
+        inputType: 'text'
+      },
+      {
+        label: 'Mot de passe',
+        formDataProperty: 'password',
+        placeholder: '',
+        inputType: 'text'
+      }
     ]"
     [submitBtnText]="'Se connecter'"
     (formSubmit)="login($event)"

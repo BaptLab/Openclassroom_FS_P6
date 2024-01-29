@@ -5,6 +5,9 @@
       [label]="field.label"
       [formDataProperty]="field.formDataProperty"
       (inputChange)="updateFormData(field.formDataProperty, $event)"
+      [placeholder]="field.placeholder"
+      [inputType]="field.inputType"
+      [selectOptions]="field.selectOptions"
     ></app-form-field>
   </ng-container>
   <app-custom-button type="submit">{{ submitBtnText }}</app-custom-button>

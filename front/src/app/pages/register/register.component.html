@@ -2,11 +2,26 @@
 <main>
   <app-back-btn></app-back-btn>
   <app-dynamic-form
-    [formTitle]="'Se connecter'"
+    [formTitle]="'Inscription'"
     [formFields]="[
-      { label: 'Nom d\'utilisateur', formDataProperty: 'username' },
-      { label: 'Adresse e-mail', formDataProperty: 'email' },
-      { label: 'Mot de passe', formDataProperty: 'password' }
+      {
+        label: 'Nom d\'utilisateur',
+        formDataProperty: 'username',
+        placeholder: '',
+        inputType: 'text'
+      },
+      {
+        label: 'Adresse e-mail',
+        formDataProperty: 'email',
+        placeholder: '',
+        inputType: 'text'
+      },
+      {
+        label: 'Mot de passe',
+        formDataProperty: 'password',
+        placeholder: '',
+        inputType: 'text'
+      }
     ]"
     [submitBtnText]="'S\'inscrire'"
     (formSubmit)="register($event)"
