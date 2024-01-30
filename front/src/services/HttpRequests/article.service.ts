@@ -14,9 +14,14 @@ export class ArticleService {
   private pathService = '/api';
 
   public getArticles(): Observable<Article[]> {
-    console.log('getting the articles !');
     return this.httpClient.get<Article[]>(
       `${this.baseUrl}${this.pathService}/articles`
+    );
+  }
+
+  public getArticleById(articleId: string | null): Observable<Article> {
+    return this.httpClient.get<Article>(
+      `${this.baseUrl}${this.pathService}/article/${articleId}`
     );
   }
 

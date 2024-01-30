@@ -34,6 +34,10 @@ public class CommentService {
 		return this.commentRepository.findAll();
 	}
 
+	 public List<Comment> findAllByArticleId(Long articleId) {
+	        return commentRepository.findAllByArticleId(articleId);
+	    }
+
 	public Comment convertDtoToComment(User user, Article article, CommentDTO commentDTO) {
 		Comment comment = new Comment();
 		comment.setArticleId(article.getId());

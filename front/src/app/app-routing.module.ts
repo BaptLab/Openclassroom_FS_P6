@@ -28,6 +28,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: ArticleDetailsComponent,
   },
+  {
+    path: 'article/:id',
+    canActivate: [AuthGuard],
+    component: ArticleDetailsComponent,
+  },
 ];
 
 @NgModule({

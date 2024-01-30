@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UserDTO {
-
-    private Long id;
     
     @NotNull
     @Email
@@ -16,13 +14,6 @@ public class UserDTO {
     @Size(min = 1, max = 255)
     private String username;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getEmail() {
 		return email;

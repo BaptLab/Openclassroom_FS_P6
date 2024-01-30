@@ -44,7 +44,7 @@ public class JwtUtils {
 	public static String generateToken(Authentication authentication) {
 		Instant now = Instant.now();
 		JwtClaimsSet claims = JwtClaimsSet.builder().issuer("self").issuedAt(now)
-				.expiresAt(now.plus(Duration.ofMinutes(30))).subject(authentication.getName()).build();
+				.expiresAt(now.plus(Duration.ofMinutes(120))).subject(authentication.getName()).build();
 		JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters
 				.from(JwsHeader.with(MacAlgorithm.HS256).build(), claims);
 		return jwtEncoder.encode(jwtEncoderParameters).getTokenValue();

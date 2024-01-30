@@ -1,5 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+// CardComponent interface
 import { Theme } from 'src/app/interfaces/theme.interface';
+
+interface Card {
+  title: string;
+  description: string;
+  id?: number;
+  showButton?: boolean;
+  author?: string;
+  buttonText?: string;
+  theme?: Theme;
+  updatedAt?: Date;
+}
+
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -7,7 +20,10 @@ import { Theme } from 'src/app/interfaces/theme.interface';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() theme: Theme = { title: '', description: '', id: 0 };
+  @Input() card: Card = {
+    title: '',
+    description: '',
+  };
 
   constructor() {}
 

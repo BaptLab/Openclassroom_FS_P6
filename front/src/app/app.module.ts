@@ -28,6 +28,7 @@ import { UnauthGuard } from './guards/unauth.guard';
 import { CardComponent } from './components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { ArticleComponent } from './components/article/article.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ArticleComponent } from './components/article/article.component';
     DynamicFormComponent,
     CardComponent,
     ArticleComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

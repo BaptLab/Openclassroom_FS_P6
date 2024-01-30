@@ -1,1 +1,22 @@
+<!-- Usage in another component -->
 <app-header></app-header>
+<app-card [card]="article"></app-card>
+<h3>Commentaires</h3>
+<ng-container *ngFor="let comment of comments">
+  <app-comment [comment]="comment"></app-comment>
+</ng-container>
+<div class="comment-input-section">
+  <div class="comment-container">
+    <app-form-field
+      class="comment-input"
+      [placeholder]="'Commentaire'"
+      [inputType]="'text'"
+      [(ngModel)]="commentText"
+    ></app-form-field>
+  </div>
+  <img
+    id="send-comment-btn"
+    src="/assets/send_icon_p6.png"
+    (click)="postComment(commentText)"
+  />
+</div>

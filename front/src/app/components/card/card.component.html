@@ -1,12 +1,18 @@
+<!-- CardComponent template -->
 <mat-card class="card">
-  <h2 class="card-title">{{ theme.title }}</h2>
+  <h2 class="card-title">{{ card.title }}</h2>
+  <div class="card-subheader">
+    <span class="subheader-text article-date">{{ card.updatedAt }}</span>
+    <span class="subheader-text article-author">{{ card.author }}</span>
+    <span class="subheader-text article-theme">{{ card.theme }}</span>
+  </div>
   <mat-card-content class="card-description">
-    {{ theme.description }}
+    {{ card.description }}
   </mat-card-content>
-  <mat-card-actions class="card-btn-container">
+  <mat-card-actions class="card-btn-container" *ngIf="card.showButton">
     <app-custom-button
       class="card-btn"
-      [buttonText]="'S\abonner'"
+      [buttonText]="card.buttonText || 'Subscribe'"
     ></app-custom-button>
   </mat-card-actions>
 </mat-card>

@@ -1,0 +1,14 @@
+.commnet-display-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-input-section {
+  display: flex;
+  justify-content: center;
+}
+
+#send-comment-btn {
+  width: auto;
+  height: 100%;
+}

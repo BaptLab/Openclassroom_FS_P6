@@ -59,14 +59,12 @@ public class UserService {
 		if (existingUser != null) {
 			existingUser.setEmail(updatingUser.getEmail());
 			existingUser.setUsername(updatingUser.getUsername());
-			existingUser.setId(updatingUser.getId());
 		}
 		return existingUser;
 	}
 
 	public UserDTO userToDTO(User user) {
 		UserDTO userDTO = new UserDTO();
-		userDTO.setId(user.getId());
 		userDTO.setEmail(user.getEmail());
 		userDTO.setUsername(user.getUsername());
 		return userDTO;
@@ -87,8 +85,8 @@ public class UserService {
 	public User updateUser(User user, UserDTO userDto) {
 		user.setEmail(userDto.getEmail());
 		user.setUsername(userDto.getUsername());
-		user.setId(userDto.getId());
-		return user;
+		User updatedUser = this.save(user);
+		return updatedUser;
 	}
 
 }

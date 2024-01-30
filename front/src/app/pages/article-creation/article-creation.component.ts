@@ -14,7 +14,7 @@ export class ArticleCreationComponent implements OnInit {
   userId: string | null = null;
 
   ngOnInit(): void {
-    const userIdString = localStorage.getItem('user_id');
+    this.userId = localStorage.getItem('user_id');
   }
 
   postArticle(formData: Article): void {
