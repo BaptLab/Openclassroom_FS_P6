@@ -1,0 +1,17 @@
+.comment-display-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.comment-display-section .comment-author {
+  margin-right: 30px;
+}
+
+.comment-display-section .comment-container {
+  background-color: lightgray;
+  width: 450px;
+  max-height: 100px;
+  padding: 19px 15px;
+  border-radius: 10px;
+}

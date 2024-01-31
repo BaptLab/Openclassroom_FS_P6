@@ -11,6 +11,7 @@ export class CommentComponent implements OnInit {
   constructor() {}
 
   @Input() comment: any = {};
+  @Input() author: string | null = '';
 
   ngOnInit(): void {}
 }
