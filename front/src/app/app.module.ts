@@ -29,6 +29,7 @@ import { CardComponent } from './components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { ArticleComponent } from './components/article/article.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { SessionService } from 'src/services/session/session.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { CommentComponent } from './components/comment/comment.component';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthGuard,
     UnauthGuard,
+    SessionService,
   ],
   bootstrap: [AppComponent],
 })

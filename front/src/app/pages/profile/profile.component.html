@@ -21,6 +21,11 @@
       [submitBtnText]="'Sauvegarder'"
       (formSubmit)="updateUser($event)"
     ></app-dynamic-form>
+    <app-custom-button
+      [buttonColor]="'red'"
+      [buttonText]="'Se déconnecter'"
+      [clickHandler]="logOut.bind(this)"
+    ></app-custom-button>
   </div>
   <span id="line"></span>
   <div class="themes-section">

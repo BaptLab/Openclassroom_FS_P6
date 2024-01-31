@@ -4,6 +4,7 @@ import { Theme } from 'src/app/interfaces/theme.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { ThemeService } from 'src/services/HttpRequests/theme.service';
 import { UserService } from 'src/services/HttpRequests/user.service';
+import { SessionService } from 'src/services/session/session.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private sessionsService: SessionService
   ) {}
 
   userId: string | null = '';
@@ -55,5 +57,15 @@ export class ProfileComponent implements OnInit {
       this.usernameField = user.username;
       this.emailField = user.email;
     });
+  }
+
+  logOut(): void {
+    console.log(this.sessionsService);
+    this.sessionsService.logOut();
+    if (this.sessionsService.isLogged === false) {
+      this.router.navigate(['/login']);
+    } else {
+      ('There was an error while trying to disconnect');
+    }
   }
 }
