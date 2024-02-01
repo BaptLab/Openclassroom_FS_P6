@@ -23,6 +23,10 @@
   transform: rotate(-90deg);
 }
 
+#sort-btn .activated {
+  transform: rotate(90deg);
+}
+
 #sort-btn span {
   margin-right: 5px;
 }

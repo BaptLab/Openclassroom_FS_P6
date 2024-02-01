@@ -5,9 +5,12 @@
       [buttonText]="'Créer un article'"
       [clickHandler]="navigateToArticleCreation"
     ></app-custom-button>
-    <div id="sort-btn">
+    <div id="sort-btn" (click)="sortArticle()">
       <span class="sort-btn-text">Trier par</span>
-      <img src="/assets/back_icon_p6.png" />
+      <img
+        src="/assets/back_icon_p6.png"
+        [class.activated]="sortBoolean === true"
+      />
     </div>
   </div>
   <div class="articles-container">

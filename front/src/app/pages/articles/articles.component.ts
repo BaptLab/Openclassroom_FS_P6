@@ -10,13 +10,14 @@ import { ArticleService } from 'src/services/HttpRequests/article.service';
 })
 export class ArticlesComponent implements OnInit {
   @Input() articles: Article[] = [];
-
+  sortBoolean: boolean = true;
   constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
     this.articleService.getArticles().subscribe(
       (receivedArticles: Article[]) => {
         this.articles = receivedArticles;
+        this.sortArticle();
       },
       (error) => {
         console.error('Error fetching articles:', error);
@@ -27,5 +28,22 @@ export class ArticlesComponent implements OnInit {
 
   navigateToArticleCreation(): void {
     this.router.navigate(['/article/creation']);
+  }
+
+  sortArticle(): void {
+    this.sortBoolean = !this.sortBoolean;
+    if (this.sortBoolean) {
+      this.articles.sort((a, b) => {
+        return (
+          new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+        );
+      });
+    } else {
+      this.articles.sort((a, b) => {
+        return (
+          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        );
+      });
+    }
   }
 }
