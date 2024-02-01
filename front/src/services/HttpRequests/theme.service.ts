@@ -18,9 +18,15 @@ export class ThemeService {
     return this.httpClient.get<Theme[]>(`${this.baseUrl}${this.pathService}`);
   }
 
+  public getUserThemes(userId: string | null): Observable<Theme[]> {
+    return this.httpClient.get<Theme[]>(
+      `${this.baseUrl}${this.pathService}/${userId}`
+    );
+  }
+
   public subscribeToTheme(
-    userId: number | null,
-    themeId: number
+    userId: string | null,
+    themeId: string | null
   ): Observable<ReturnedMessage> {
     return this.httpClient.post<ReturnedMessage>(
       `${this.baseUrl}${this.pathService}/${userId}/subscribe/${themeId}`,
@@ -29,8 +35,8 @@ export class ThemeService {
   }
 
   public unsubscribeToTheme(
-    userId: number | null,
-    themeId: number
+    userId: string | null,
+    themeId: string | null
   ): Observable<ReturnedMessage> {
     return this.httpClient.delete<ReturnedMessage>(
       `${this.baseUrl}${this.pathService}/${userId}/subscribe/${themeId}`,

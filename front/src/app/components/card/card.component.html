@@ -9,10 +9,11 @@
   <mat-card-content class="card-description">
     {{ card.description }}
   </mat-card-content>
-  <mat-card-actions class="card-btn-container" *ngIf="card.showButton">
+  <mat-card-actions class="card-btn-container" *ngIf="[showButton]">
     <app-custom-button
       class="card-btn"
-      [buttonText]="card.buttonText || 'Subscribe'"
+      [buttonText]="buttonText || 'Subscribe'"
+      [clickHandler]="btnAction"
     ></app-custom-button>
   </mat-card-actions>
 </mat-card>

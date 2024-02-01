@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('user_id');
     this.getUserInfos(this.userId);
-    this.themeService.getThemes().subscribe((receivedThemes) => {
+    this.themeService.getUserThemes(this.userId).subscribe((receivedThemes) => {
       this.themes = receivedThemes;
     });
   }

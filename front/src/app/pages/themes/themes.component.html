@@ -1,6 +1,12 @@
 <app-header></app-header>
 <main class="themes-container">
   <ng-container *ngFor="let theme of themes">
-    <app-card class="theme-card" [card]="theme"></app-card>
+    <app-card
+      class="theme-card"
+      [card]="theme"
+      [buttonText]="theme.isSubscribed ? 'Se désabonner' : 'S\'abonner'"
+      [showButton]="true"
+      [btnAction]="getToggleSubscriptionMethod(theme)"
+    ></app-card>
   </ng-container>
 </main>
