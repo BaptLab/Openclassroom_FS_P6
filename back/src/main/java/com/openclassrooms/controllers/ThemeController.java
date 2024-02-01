@@ -40,6 +40,19 @@ public class ThemeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error retrieving themes");
         }
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findAllSubscribedTheme(@PathVariable("id") Long userId) {
+        try {
+            List<Theme> themes = themeService.findThemesByUserId(userId);
+            System.out.println(themes);
+            return ResponseEntity.ok().body(themes);
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request format");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error retrieving themes");
+        }
+    }
 
     @PostMapping("/{id}/subscribe/{themeId}")
     public ResponseEntity<?> subscribeToTheme(@PathVariable("id") Long userId, @PathVariable("themeId") Long themeId) {
@@ -66,8 +79,7 @@ public class ThemeController {
     }
 
     @DeleteMapping("/{id}/subscribe/{themeId}")
-    public ResponseEntity<?> unSubscribeToTheme(@PathVariable("id") Long userId, @PathVariable("themeId") Long themeId,
-                                                @RequestBody UserDTO userDto) {
+    public ResponseEntity<?> unSubscribeToTheme(@PathVariable("id") Long userId, @PathVariable("themeId") Long themeId) {
         try {
             User user = userService.findById(userId);
             Theme theme = themeService.findById(themeId);
