@@ -21,6 +21,9 @@ export class ProfileComponent implements OnInit {
     private sessionsService: SessionService
   ) {}
 
+  subscribedThemes: number[] = [];
+  buttonTextValue: boolean = false;
+
   userId: string | null = '';
 
   usernameField: string = '';
@@ -66,6 +69,33 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/login']);
     } else {
       ('There was an error while trying to disconnect');
+    }
+  }
+
+  getToggleSubscriptionMethod(theme: Theme): () => void {
+    return () => this.toggleSubscription(theme);
+  }
+
+  toggleSubscription(theme: Theme): void {
+    const themeId = theme.id.toString();
+
+    if (!theme.isSubscribed) {
+      console.log('Je me désabonne');
+      this.themeService
+        .unsubscribeToTheme(this.userId, themeId)
+        .subscribe(() => {
+          this.subscribedThemes = this.subscribedThemes.filter(
+            (id) => id !== theme.id
+          );
+          theme.isSubscribed = true;
+        });
+    } else {
+      console.log('Je mabonne');
+
+      this.themeService.subscribeToTheme(this.userId, themeId).subscribe(() => {
+        this.subscribedThemes.push(theme.id);
+        theme.isSubscribed = false;
+      });
     }
   }
 }
