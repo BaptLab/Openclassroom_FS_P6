@@ -1,0 +1,46 @@
+<mat-toolbar color="none" class="header">
+  <img src="/assets/logo_p6.png" />
+  <div class="all-nav">
+    <div *ngIf="sessionService.isLogged" class="header-nav">
+      <a
+        [class.active]="isActive(['/articles', '/article/**'])"
+        (click)="navigateToArticles()"
+        >Articles</a
+      >
+
+      <a [class.active]="isActive(['/themes'])" (click)="navigateToThemes()"
+        >Thèmes</a
+      >
+      <img src="/assets/user_icon_p6.png" (click)="navigateToProfile()" />
+    </div>
+
+    <div
+      *ngIf="sessionService.isLogged"
+      id="responsive-nav"
+      [ngClass]="{
+        'hidden-sidenav': !isSidenavOpen,
+        'open-sidenav': isSidenavOpen
+      }"
+    >
+      <div id="hamburger-btn" (click)="toggleSidenav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="nav-btn-sidenav">
+        <div class="nav-btn">
+          <a
+            [class.active]="isActive(['/articles', '/article/**'])"
+            (click)="navigateToArticles()"
+            >Articles</a
+          >
+
+          <a [class.active]="isActive(['/themes'])" (click)="navigateToThemes()"
+            >Thèmes</a
+          >
+        </div>
+        <img src="/assets/user_icon_p6.png" (click)="navigateToProfile()" />
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

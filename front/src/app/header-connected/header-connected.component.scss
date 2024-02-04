@@ -1,0 +1,127 @@
+img {
+  width: auto;
+  height: 80%;
+}
+
+.header-nav {
+  display: block;
+  width: 100%;
+}
+
+.header {
+  height: 97px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+  padding-left: 16px;
+}
+
+.hidden-sidenav {
+  display: flex;
+  gap: 25px;
+}
+
+.hidden-sidenav a {
+  cursor: pointer;
+}
+
+.active {
+  color: #6c5ccf;
+}
+
+.hidden-sidenav img {
+  width: auto;
+  height: 30px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
+  .header .header-nav {
+    display: none;
+  }
+
+  #hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 4px;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #hamburger-btn span {
+    width: 20px;
+    height: 3px;
+    background-color: black;
+  }
+
+  #nav-btn-sidenav {
+    flex-direction: column;
+    width: 0%;
+    justify-content: center;
+    align-items: end;
+    height: 100%;
+    z-index: 2;
+  }
+  .open-sidenav {
+    position: fixed;
+    top: 462px;
+    right: 0;
+    width: 80%;
+    height: 100vh;
+    background-color: white;
+    border-left: 1px solid black;
+    flex-direction: column;
+    z-index: 1;
+    position: relative;
+  }
+
+  .hidden-sidenav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0px;
+    height: 100vh;
+    background-color: white;
+    border-left: 1px solid black;
+    flex-direction: column;
+    z-index: 1;
+    position: relative;
+  }
+
+  .hidden-sidenav #hamburger-btn {
+    position: absolute;
+    right: 30px;
+  }
+
+  .open-sidenav #hamburger-btn {
+    position: absolute;
+    top: -365px;
+    left: 30px;
+  }
+
+  .open-sidenav img {
+    width: auto;
+    height: 30px;
+  }
+
+  .open-sidenav #nav-btn-sidenav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: end;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .open-sidenav .nav-btn {
+    display: flex;
+    flex-direction: column;
+    margin: 10% 10%;
+  }
+
+  .open-sidenav img {
+    margin: 10% 10%;
+  }
+}

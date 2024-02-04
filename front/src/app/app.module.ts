@@ -30,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ArticleComponent } from './components/article/article.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SessionService } from 'src/services/session/session.service';
+import { HeaderConnectedComponent } from './header-connected/header-connected.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SessionService } from 'src/services/session/session.service';
     CardComponent,
     ArticleComponent,
     CommentComponent,
+    HeaderConnectedComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+.mq-logo {
+  display: none;
+}
+
+@media only screen and (max-width: 650px) {
+  .mq-logo {
+    display: block;
+    align-items: center;
+    width: 50%;
+    height: auto;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .back-btn-component {
+    width: 100%;
+  }
+}
