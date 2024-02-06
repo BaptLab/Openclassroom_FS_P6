@@ -1,8 +1,10 @@
 package com.openclassrooms.services;
 
+import com.openclassrooms.models.Article;
 import com.openclassrooms.models.Theme;
 import com.openclassrooms.models.User;
 import com.openclassrooms.models.UserTheme;
+import com.openclassrooms.repository.ArticleRepository;
 import com.openclassrooms.repository.ThemeRepository;
 import com.openclassrooms.repository.UserThemeRepository;
 
@@ -16,10 +18,12 @@ public class ThemeService {
 
     private final ThemeRepository themeRepository;
     private final UserThemeRepository userThemeRepository;
+    private final ArticleRepository articleRepository;
 
-    public ThemeService(ThemeRepository themeRepository, UserThemeRepository userThemeRepository) {
+    public ThemeService(ThemeRepository themeRepository, UserThemeRepository userThemeRepository, ArticleRepository articleRepository) {
         this.themeRepository = themeRepository;
         this.userThemeRepository = userThemeRepository;
+		this.articleRepository = null;
     }
 
     public Theme findById(Long id) {
@@ -37,10 +41,7 @@ public class ThemeService {
     public Theme save(Theme theme) {
         return themeRepository.save(theme);
     }
-
-	public void subscribeToTheme(User user, Theme theme) {
-		
-	}
+    
 	
 	public List<Theme> findThemesByUserId(Long userId) {
 	    System.out.println("User ID: " + userId);

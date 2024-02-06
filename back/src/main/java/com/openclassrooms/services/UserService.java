@@ -44,6 +44,10 @@ public class UserService {
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
+	
+	public User findByUsername(String username) {
+	    return userRepository.findByUsername(username);
+	}
 
 	public User registerRequestToUser(RegisterRequest registerRequest) {
 		User user = new User();
@@ -88,5 +92,17 @@ public class UserService {
 		User updatedUser = this.save(user);
 		return updatedUser;
 	}
+	
+	public boolean isEmailValid(String email) {
+        return email != null && email.matches("\\S+@\\S+\\.\\S+");
+    }
+
+    public boolean isPasswordValid(String password) {
+        return password != null && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    }
+
+    public boolean isUsernameValid(String username) {
+        return username != null && username.length() >= 8;
+    }
 
 }

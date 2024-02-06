@@ -1,5 +1,7 @@
 package com.openclassrooms.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,4 +50,9 @@ public class UserThemeService {
 			this.userThemeRepository.deleteByUserIdAndThemeId(user.getId(), theme.getId());
 		}
 	}
+	
+	@Transactional
+    public List<UserTheme> findUserThemesByUserId(Long userId) {
+        return userThemeRepository.findByUserId(userId);
+    }
 }

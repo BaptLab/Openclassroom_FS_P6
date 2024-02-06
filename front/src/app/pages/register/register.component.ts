@@ -26,7 +26,7 @@ export class RegisterComponent {
         // You can access the 'message' property here if needed
         console.log('Message:', registerSuccess.message);
         if (registerRequest != null) {
-          this.router.navigate(['/themes']);
+          this.router.navigate(['/login']);
         }
       },
       (error) => {

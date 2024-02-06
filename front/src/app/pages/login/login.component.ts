@@ -22,7 +22,7 @@ export class LoginComponent {
 
   login(formData: LoginRequest): void {
     const loginRequest: LoginRequest = {
-      email: formData.email,
+      emailOrUsername: formData.emailOrUsername,
       password: formData.password,
     };
 

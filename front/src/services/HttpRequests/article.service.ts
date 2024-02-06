@@ -13,9 +13,9 @@ export class ArticleService {
   private baseUrl = 'http://localhost:8080';
   private pathService = '/api';
 
-  public getArticles(): Observable<Article[]> {
+  public getArticles(userId: string | null): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
-      `${this.baseUrl}${this.pathService}/articles`
+      `${this.baseUrl}${this.pathService}/${userId}/articles`
     );
   }
 

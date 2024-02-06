@@ -14,7 +14,8 @@ export class ArticlesComponent implements OnInit {
   constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
-    this.articleService.getArticles().subscribe(
+    const userId = localStorage.getItem('user_id');
+    this.articleService.getArticles(userId).subscribe(
       (receivedArticles: Article[]) => {
         this.articles = receivedArticles;
         this.sortArticle();

@@ -9,7 +9,28 @@
       [inputType]="field.inputType"
       [selectOptions]="field.selectOptions"
     ></app-form-field>
+
+    <div
+      class="error-msg"
+      *ngIf="isFormSubmitted && !formData[field.formDataProperty]"
+    >
+      This field cannot be empty.
+    </div>
+    <div
+      class="error-msg"
+      *ngIf="
+        isFormSubmitted &&
+        formData[field.formDataProperty] &&
+        customValidationRules[field.formDataProperty] &&
+        !customValidationRules[field.formDataProperty].rule(
+          formData[field.formDataProperty]
+        )
+      "
+    >
+      {{ customValidationRules[field.formDataProperty].errorMessage }}
+    </div>
   </ng-container>
+
   <app-custom-button
     type="submit"
     [buttonText]="submitBtnText"

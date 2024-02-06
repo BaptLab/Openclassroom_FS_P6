@@ -89,7 +89,7 @@ export class ArticleDetailsComponent implements OnInit {
         (comment: CommentText) => {
           console.log('Comment posted successfully:', comment);
           // Trigger change detection
-          this.cdr.detectChanges();
+          this.comments.push(comment);
         },
         (error: Error) => {
           console.error('Error posting comment:', error);

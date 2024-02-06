@@ -13,34 +13,40 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id) {
-        try {
-            User user = userService.findById(Long.valueOf(id));
-            if (user == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-            }
-            return ResponseEntity.ok().body(user);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user ID format");
-        }
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<?> findById(@PathVariable("id") String id) {
+		try {
+			User user = userService.findById(Long.valueOf(id));
+			if (user == null) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			}
+			return ResponseEntity.ok().body(user);
+		} catch (NumberFormatException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user ID format");
+		}
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable("id") String id, @RequestBody UserDTO userDto) {
-        try {
-            User user = userService.findById(Long.valueOf(id));
-            if (user == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-            }
-            User updatedUser = userService.updateUser(user, userDto);
-            UserDTO updatedUserDto = userService.userToDTO(updatedUser);
-            return ResponseEntity.ok().body(updatedUserDto);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user ID format");
-        }
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<?> updateUser(@PathVariable("id") String id, @RequestBody UserDTO userDto) {
+		try {
+			User user = userService.findById(Long.valueOf(id));
+			if (user == null) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			}
+			if (!userService.isEmailValid(userDto.getEmail())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email format");
+			}
+			if (!userService.isUsernameValid(userDto.getUsername())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username format");
+			}
+			User updatedUser = userService.updateUser(user, userDto);
+			UserDTO updatedUserDto = userService.userToDTO(updatedUser);
+			return ResponseEntity.ok().body(updatedUserDto);
+		} catch (NumberFormatException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user ID format");
+		}
+	}
 }
