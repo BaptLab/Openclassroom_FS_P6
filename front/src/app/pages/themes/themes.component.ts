@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemeService } from 'src/services/HttpRequests/theme.service';
 import { Theme } from 'src/app/interfaces/theme.interface';
+import { SessionService } from 'src/services/session/session.service';
 
 @Component({
   selector: 'app-themes',
@@ -14,11 +15,15 @@ export class ThemesComponent implements OnInit {
   subscribedThemes: number[] = [];
   buttonTextValue: boolean = false;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private sessionService: SessionService
+  ) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('user_id');
     this.loadThemes();
+    console.log(this.sessionService.isLogged);
   }
 
   private loadThemes(): void {

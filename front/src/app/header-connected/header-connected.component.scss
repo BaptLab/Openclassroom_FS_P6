@@ -5,23 +5,27 @@ img {
 
 .header-nav {
   display: block;
-  width: 100%;
+}
+
+.header-nav img {
+  width: 50px;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 .header {
   height: 97px;
   display: flex;
   justify-content: space-between;
-  padding: 0px;
-  padding-left: 16px;
 }
 
-.hidden-sidenav {
+.header-nav {
   display: flex;
   gap: 25px;
 }
 
-.hidden-sidenav a {
+.header-nav a {
   cursor: pointer;
 }
 
@@ -29,99 +33,117 @@ img {
   color: #6c5ccf;
 }
 
-.hidden-sidenav img {
-  width: auto;
-  height: 30px;
+#nav-btn-sidenav img {
+  width: 50px;
+  height: auto;
+  object-fit: cover;
   cursor: pointer;
 }
 
+#responsive-nav {
+  display: none;
+}
+
 @media only screen and (max-width: 650px) {
-  .header .header-nav {
+  #responsive-nav {
+    display: block;
+  }
+
+  .header-nav {
     display: none;
   }
 
-  #hamburger-btn {
+  .open-sidenav #hamburger-btn {
+    z-index: 3;
     display: flex;
     flex-direction: column;
-    height: 100%;
     gap: 4px;
-    justify-content: center;
     cursor: pointer;
-    z-index: 2;
+    position: absolute;
+    top: 50px;
+    left: 50px;
   }
 
-  #hamburger-btn span {
-    width: 20px;
+  .open-sidenav #hamburger-btn span {
     height: 3px;
     background-color: black;
+    width: 25px;
   }
 
-  #nav-btn-sidenav {
-    flex-direction: column;
-    width: 0%;
-    justify-content: center;
-    align-items: end;
-    height: 100%;
-    z-index: 2;
-  }
   .open-sidenav {
+    transition-timing-function: ease-in;
+    transition-duration: 200ms;
+    display: block;
     position: fixed;
-    top: 462px;
-    right: 0;
-    width: 80%;
     height: 100vh;
-    background-color: white;
-    border-left: 1px solid black;
-    flex-direction: column;
-    z-index: 1;
-    position: relative;
-  }
-
-  .hidden-sidenav {
-    position: fixed;
+    width: 80vw;
+    left: 20%;
     top: 0;
-    right: 0;
-    width: 0px;
-    height: 100vh;
     background-color: white;
-    border-left: 1px solid black;
-    flex-direction: column;
-    z-index: 1;
-    position: relative;
-  }
-
-  .hidden-sidenav #hamburger-btn {
-    position: absolute;
-    right: 30px;
-  }
-
-  .open-sidenav #hamburger-btn {
-    position: absolute;
-    top: -365px;
-    left: 30px;
-  }
-
-  .open-sidenav img {
-    width: auto;
-    height: 30px;
+    z-index: 2;
+    border-left: 2px solid black;
   }
 
   .open-sidenav #nav-btn-sidenav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: end;
     height: 100%;
-    z-index: 2;
-  }
-
-  .open-sidenav .nav-btn {
     display: flex;
     flex-direction: column;
-    margin: 10% 10%;
+    align-items: end;
+    gap: 78%;
+    margin: 50px;
   }
 
-  .open-sidenav img {
-    margin: 10% 10%;
+  .open-sidenav #nav-btn-sidenav .nav-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hidden-sidenav #hamburger-btn {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    left: -50px;
+  }
+
+  .hidden-sidenav #hamburger-btn span {
+    height: 3px;
+    background-color: black;
+    width: 25px;
+  }
+
+  .hidden-sidenav {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in;
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 80vw;
+    left: 100%;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+    border-left: 2px solid black;
+  }
+
+  .hidden-sidenav #nav-btn-sidenav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 78%;
+    margin: 50px;
+  }
+
+  .hidden-sidenav #nav-btn-sidenav .nav-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
   }
 }
