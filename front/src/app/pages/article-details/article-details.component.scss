@@ -4,11 +4,31 @@
 }
 
 .comment-input-section {
+  margin-top: 43px;
   display: flex;
   justify-content: center;
 }
 
+.comment-container {
+  position: relative;
+}
+
 #send-comment-btn {
+  position: absolute;
+  right: -65px;
+  top: 50%;
+  transform: translate(-50%, -80%);
   width: auto;
-  height: 100%;
+  height: 30px;
+  z-index: 2;
+}
+
+.article-details-card {
+  background-color: white;
+}
+
+@media only screen and (max-width: 650px) {
+  #send-comment-btn {
+    right: 0px;
+  }
 }

@@ -1,5 +1,9 @@
 <app-header-connected></app-header-connected>
-<app-card [card]="article" [showButton]="false"></app-card>
+<app-card
+  class="article-details-card"
+  [card]="article"
+  [showButton]="false"
+></app-card>
 <h3>Commentaires</h3>
 <ng-container *ngFor="let comment of comments">
   <app-comment [comment]="comment" [author]="articleAuthor"></app-comment>
@@ -12,10 +16,10 @@
       [inputType]="'text'"
       (inputChange)="updateFormData('description', $event)"
     ></app-form-field>
+    <img
+      id="send-comment-btn"
+      src="/assets/send_icon_p6.png"
+      (click)="postComment()"
+    />
   </div>
-  <img
-    id="send-comment-btn"
-    src="/assets/send_icon_p6.png"
-    (click)="postComment()"
-  />
 </div>

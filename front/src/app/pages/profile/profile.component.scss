@@ -35,3 +35,18 @@ main {
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (max-width: 650px) {
+  .themes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .theme-card {
+    display: flex;
+    width: 100%;
+  }
+}
