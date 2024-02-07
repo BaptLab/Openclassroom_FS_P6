@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/services/HttpRequests/theme.service';
 
 interface FormField {
@@ -15,12 +23,14 @@ interface FormField {
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit, OnDestroy {
   @Input() formTitle: string = 'Title';
   @Input() submitBtnText: string = '';
   @Output() formSubmit = new EventEmitter<any>();
 
   @Input() formFields: FormField[] = [];
+
+  private themeSubscription: Subscription | undefined;
 
   formData: { [key: string]: any } = {};
   invalidInputMsg: string | null = '';
@@ -37,12 +47,14 @@ export class DynamicFormComponent implements OnInit {
 
     // If there is, fetch themes from the API and populate selectOptions
     if (selectField) {
-      this.themeService.getThemes().subscribe((themes) => {
-        selectField.selectOptions = themes.map((theme) => ({
-          value: theme.title,
-          label: theme.title,
-        }));
-      });
+      this.themeSubscription = this.themeService
+        .getThemes()
+        .subscribe((themes) => {
+          selectField.selectOptions = themes.map((theme) => ({
+            value: theme.title,
+            label: theme.title,
+          }));
+        });
     }
 
     // Initialize form data with default values or values passed from formFields
@@ -115,5 +127,11 @@ export class DynamicFormComponent implements OnInit {
     }
 
     return true; // All validations passed
+  }
+
+  ngOnDestroy(): void {
+    if (this.themeSubscription) {
+      this.themeSubscription.unsubscribe();
+    }
   }
 }

@@ -1,5 +1,12 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Article } from 'src/app/interfaces/article.interface';
 import { CommentText } from 'src/app/interfaces/comment.interface';
 import { User } from 'src/app/interfaces/user.interface';
@@ -12,7 +19,7 @@ import { UserService } from 'src/services/HttpRequests/user.service';
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
 })
-export class ArticleDetailsComponent implements OnInit {
+export class ArticleDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
@@ -22,6 +29,7 @@ export class ArticleDetailsComponent implements OnInit {
   ) {}
 
   comments: CommentText[] = [];
+  responsiveCommentText: { description: string } = { description: '' };
 
   articleId: string | null = '';
   userId: string | null = '';
@@ -29,6 +37,10 @@ export class ArticleDetailsComponent implements OnInit {
 
   article: any = {};
   commentText: { description: string } = { description: '' };
+
+  private articleSubscription: Subscription | undefined;
+  private userSubscription: Subscription | undefined;
+  private commentsSubscription: Subscription | undefined;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -44,41 +56,52 @@ export class ArticleDetailsComponent implements OnInit {
     this.commentText.description = value;
   }
 
+  updateResponsiveFormData(event: any): void {
+    const value = event.target.value;
+    this.responsiveCommentText.description = value;
+  }
+
   getArticleData(articleId: string | null): void {
-    this.articleService.getArticleById(articleId).subscribe(
-      (article: Article) => {
-        console.log(article);
-        this.article = article;
-        this.loadAuthor();
-      },
-      (error: Error) => {
-        console.error('Error fetching the article details : ', error);
-      }
-    );
+    this.articleSubscription = this.articleService
+      .getArticleById(articleId)
+      .subscribe(
+        (article: Article) => {
+          console.log(article);
+          this.article = article;
+          this.loadAuthor();
+        },
+        (error: Error) => {
+          console.error('Error fetching the article details : ', error);
+        }
+      );
   }
 
   private loadAuthor(): void {
-    this.userService.getUser(this.article.userId.toString()).subscribe(
-      (user: User) => {
-        this.article.author = user.username;
-        this.articleAuthor = user.username;
-      },
-      (error) => {
-        console.error('Error fetching author:', error);
-      }
-    );
+    this.userSubscription = this.userService
+      .getUser(this.article.userId.toString())
+      .subscribe(
+        (user: User) => {
+          this.article.author = user.username;
+          this.articleAuthor = user.username;
+        },
+        (error) => {
+          console.error('Error fetching author:', error);
+        }
+      );
   }
 
   getComments(articleId: string | null): void {
-    this.commentService.getComments(articleId).subscribe(
-      (receivedComments: CommentText[]) => {
-        this.comments = receivedComments;
-        console.log('Commentaires reçus de la DB :', receivedComments);
-      },
-      (error) => {
-        console.error('Error fetching comments:', error);
-      }
-    );
+    this.commentsSubscription = this.commentService
+      .getComments(articleId)
+      .subscribe(
+        (receivedComments: CommentText[]) => {
+          this.comments = receivedComments;
+          console.log('Commentaires reçus de la DB :', receivedComments);
+        },
+        (error) => {
+          console.error('Error fetching comments:', error);
+        }
+      );
   }
 
   postComment(): void {
@@ -95,5 +118,36 @@ export class ArticleDetailsComponent implements OnInit {
           console.error('Error posting comment:', error);
         }
       );
+  }
+
+  postResponsiveComment(): void {
+    console.log(
+      'Data sent for responsive comment:',
+      this.responsiveCommentText
+    );
+    this.commentService
+      .postComment(this.userId, this.responsiveCommentText, this.articleId)
+      .subscribe(
+        (comment: CommentText) => {
+          console.log('Comment posted successfully:', comment);
+          // Trigger change detection
+          this.comments.push(comment);
+        },
+        (error: Error) => {
+          console.error('Error posting comment:', error);
+        }
+      );
+  }
+
+  ngOnDestroy(): void {
+    if (this.articleSubscription) {
+      this.articleSubscription.unsubscribe();
+    }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.commentsSubscription) {
+      this.commentsSubscription.unsubscribe();
+    }
   }
 }

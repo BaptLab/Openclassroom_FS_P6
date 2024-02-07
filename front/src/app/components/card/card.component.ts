@@ -42,4 +42,6 @@ export class CardComponent implements OnInit {
       this.buttonClick.emit(this.card.theme.id);
     }
   }
+
+  ngOnDestroy(): void {}
 }

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/services/HttpRequests/theme.service';
 import { Theme } from 'src/app/interfaces/theme.interface';
 import { SessionService } from 'src/services/session/session.service';
@@ -8,12 +9,15 @@ import { SessionService } from 'src/services/session/session.service';
   templateUrl: './themes.component.html',
   styleUrls: ['./themes.component.scss'],
 })
-export class ThemesComponent implements OnInit {
+export class ThemesComponent implements OnInit, OnDestroy {
   @Input() themes: Theme[] = [];
 
   userId: string | null = '';
   subscribedThemes: number[] = [];
   buttonTextValue: boolean = false;
+
+  private themesSubscription: Subscription | undefined;
+  private userThemesSubscription: Subscription | undefined;
 
   constructor(
     private themeService: ThemeService,
@@ -27,15 +31,17 @@ export class ThemesComponent implements OnInit {
   }
 
   private loadThemes(): void {
-    this.themeService.getThemes().subscribe((receivedThemes) => {
-      this.themes = receivedThemes;
-      this.themeService
-        .getUserThemes(this.userId)
-        .subscribe((subscribedThemes) => {
-          this.subscribedThemes = subscribedThemes.map((theme) => theme.id);
-          this.updateButtonStates();
-        });
-    });
+    this.themesSubscription = this.themeService
+      .getThemes()
+      .subscribe((receivedThemes) => {
+        this.themes = receivedThemes;
+        this.userThemesSubscription = this.themeService
+          .getUserThemes(this.userId)
+          .subscribe((subscribedThemes) => {
+            this.subscribedThemes = subscribedThemes.map((theme) => theme.id);
+            this.updateButtonStates();
+          });
+      });
   }
 
   private updateButtonStates(): void {
@@ -65,6 +71,15 @@ export class ThemesComponent implements OnInit {
         this.subscribedThemes.push(theme.id);
         theme.isSubscribed = true;
       });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.themesSubscription) {
+      this.themesSubscription.unsubscribe();
+    }
+    if (this.userThemesSubscription) {
+      this.userThemesSubscription.unsubscribe();
     }
   }
 }

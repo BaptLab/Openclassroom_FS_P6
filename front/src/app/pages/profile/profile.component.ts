@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Theme } from 'src/app/interfaces/theme.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { ThemeService } from 'src/services/HttpRequests/theme.service';
@@ -11,8 +12,10 @@ import { SessionService } from 'src/services/session/session.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   @Input() themes: Theme[] = [];
+
+  private userThemesSubscription: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -32,9 +35,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('user_id');
     this.getUserInfos(this.userId);
-    this.themeService.getUserThemes(this.userId).subscribe((receivedThemes) => {
-      this.themes = receivedThemes;
-    });
+
+    // Subscribe to user themes
+    this.userThemesSubscription = this.themeService
+      .getUserThemes(this.userId)
+      .subscribe((receivedThemes) => {
+        this.themes = receivedThemes;
+      });
   }
 
   updateUser(user: User): void {
@@ -45,14 +52,16 @@ export class ProfileComponent implements OnInit {
       'updatedUser : ',
       user
     );
-    this.userService.updateUser(this.userId, user).subscribe((user: User) => {
-      if (user != null) {
-        console.log('user updated successfully !', user);
-        // this.router.navigate(['/articles']);
-      } else {
-        console.error('Error updating the user :/');
-      }
-    });
+    this.userService
+      .updateUser(this.userId, user)
+      .subscribe((updatedUser: User) => {
+        if (updatedUser != null) {
+          console.log('User updated successfully!', updatedUser);
+          // this.router.navigate(['/articles']);
+        } else {
+          console.error('Error updating the user :/');
+        }
+      });
   }
 
   getUserInfos(userId: string | null): void {
@@ -96,6 +105,12 @@ export class ProfileComponent implements OnInit {
         this.subscribedThemes.push(theme.id);
         theme.isSubscribed = false;
       });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.userThemesSubscription) {
+      this.userThemesSubscription.unsubscribe();
     }
   }
 }

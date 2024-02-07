@@ -62,7 +62,7 @@ img {
     gap: 4px;
     cursor: pointer;
     position: absolute;
-    top: 50px;
+    top: 40px;
     left: 50px;
   }
 
@@ -111,7 +111,7 @@ img {
     gap: 4px;
     cursor: pointer;
     position: absolute;
-    top: 50px;
+    top: 40px;
     left: -50px;
   }
 
@@ -125,7 +125,7 @@ img {
     transition-duration: 200ms;
     transition-timing-function: ease-in;
     display: block;
-    position: fixed;
+    position: absolute;
     height: 100vh;
     width: 80vw;
     left: 100%;

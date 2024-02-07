@@ -1,11 +1,18 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-form-field',
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
 })
-export class FormFieldComponent implements OnInit {
+export class FormFieldComponent implements OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() formDataProperty: string = '';
   @Input() placeholder: string = '';
@@ -32,4 +39,6 @@ export class FormFieldComponent implements OnInit {
       this.inputChange.emit(value);
     }
   }
+
+  ngOnDestroy(): void {}
 }

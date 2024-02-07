@@ -14,4 +14,5 @@ export class CommentComponent implements OnInit {
   @Input() author: string | null = '';
 
   ngOnInit(): void {}
+  ngOnDestroy(): void {}
 }

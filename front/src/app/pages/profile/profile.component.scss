@@ -18,6 +18,15 @@
   margin-top: 20px;
   padding: 0;
 }
+#disconnect-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 #line {
   display: flex;
