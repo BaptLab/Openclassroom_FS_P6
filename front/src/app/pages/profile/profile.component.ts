@@ -29,11 +29,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   userId: string | null = '';
 
+  // Initialize with empty strings
   usernameField: string = '';
   emailField: string = '';
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('user_id');
+    // Set initial values from getUserInfos
     this.getUserInfos(this.userId);
 
     // Subscribe to user themes

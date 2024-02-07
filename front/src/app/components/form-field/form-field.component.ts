@@ -16,7 +16,7 @@ export class FormFieldComponent implements OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() formDataProperty: string = '';
   @Input() placeholder: string = '';
-  @Input() value: string = '';
+  @Input() value: string | undefined = '';
   @Input() inputType: string | undefined = '';
   @Input() selectOptions: { value: any; label: string }[] | undefined = [];
   @Output() inputChange = new EventEmitter<string>();

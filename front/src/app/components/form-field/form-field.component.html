@@ -2,15 +2,17 @@
   <label>{{ label }}</label>
   <ng-container *ngIf="inputType === 'select' || !inputType; else inputField">
     <select [(ngModel)]="selectedValue" (change)="onInputChange($event)">
-      <option disabled selected>{{ placeholder }}</option>
       <option *ngFor="let option of selectOptions" [value]="option.value">
         {{ option.label }}
+      </option>
+      <option [ngValue]="undefined" disabled selected hidden>
+        {{ placeholder }}
       </option>
     </select>
   </ng-container>
   <ng-template #inputField>
     <input
-      [(ngModel)]="inputValue"
+      [(ngModel)]="value"
       [type]="inputType || 'text'"
       [placeholder]="placeholder"
       (input)="onInputChange($event)"

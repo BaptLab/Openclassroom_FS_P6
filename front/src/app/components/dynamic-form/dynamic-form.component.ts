@@ -15,7 +15,7 @@ interface FormField {
   placeholder: string;
   inputType?: string | undefined;
   selectOptions?: { value: any; label: string }[] | undefined;
-  value?: string;
+  value?: string | undefined;
 }
 
 @Component({
