@@ -17,6 +17,20 @@
   justify-content: space-between;
 }
 
+.article-page-subheader {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-family: "Inter", sans-serif;
+}
+
+.card-description {
+  font-family: "Inter", sans-serif;
+}
+
 #sort-btn img {
   width: auto;
   height: 15px;
@@ -29,6 +43,7 @@
 
 #sort-btn span {
   margin-right: 5px;
+  font-family: "Inter", sans-serif;
 }
 
 #sort-btn {
