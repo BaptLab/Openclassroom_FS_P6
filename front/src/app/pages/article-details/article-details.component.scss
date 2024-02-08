@@ -1,3 +1,14 @@
+.article-details-card {
+  display: flex;
+  justify-content: center;
+}
+
+.article-details-card .card {
+  border: none;
+  box-shadow: none;
+  background-color: inherit;
+}
+
 .commnet-display-section {
   display: flex;
   flex-direction: row;
@@ -31,6 +42,10 @@
 
 .responsive-comment-input {
   display: none;
+}
+
+.comments-container {
+  width: 80%;
 }
 
 .comment-input {
@@ -84,7 +99,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 93%;
   }
   .comment-input-section {
     width: 100%;

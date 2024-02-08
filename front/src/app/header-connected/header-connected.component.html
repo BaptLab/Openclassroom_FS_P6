@@ -15,19 +15,26 @@
     </div>
 
     <div
-      *ngIf="sessionService.isLogged"
-      id="responsive-nav"
       [ngClass]="{
-        'hidden-sidenav': !isSidenavOpen,
-        'open-sidenav': isSidenavOpen
+        'hamburger-btn-closed': !isSidenavOpen,
+        'hamburger-btn-open': isSidenavOpen
       }"
+      id="hamburger-btn"
+      (click)="toggleSidenav()"
     >
-      <div id="hamburger-btn" (click)="toggleSidenav()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div id="nav-btn-sidenav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div id="nav-btn-sidenav">
+      <div
+        *ngIf="sessionService.isLogged"
+        id="responsive-nav"
+        [ngClass]="{
+          'hidden-sidenav': !isSidenavOpen,
+          'open-sidenav': isSidenavOpen
+        }"
+      >
         <div class="nav-btn">
           <a
             [class.active]="isActive(['/articles', '/article/**'])"

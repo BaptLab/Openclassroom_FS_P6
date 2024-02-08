@@ -6,6 +6,11 @@ main {
 .mq-logo {
   display: none;
 }
+
+form h2 {
+  font-family: "Inter", sans-serif;
+}
+
 @media only screen and (max-width: 650px) {
   .mq-logo {
     display: block;

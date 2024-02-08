@@ -8,6 +8,7 @@
   width: 100%;
   justify-content: space-between;
   min-width: 200px;
+  border: none;
 }
 
 .mat-card-header-text {
@@ -16,6 +17,7 @@
 
 .card-subheader {
   display: flex;
+  margin: 20px 0px;
 }
 
 .card-subheader span {

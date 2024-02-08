@@ -2,7 +2,9 @@
 <mat-card class="card">
   <h2 class="card-title">{{ card.title }}</h2>
   <div class="card-subheader">
-    <span class="subheader-text article-date">{{ card.updatedAt }}</span>
+    <span class="subheader-text article-date">{{
+      card.updatedAt | date : "dd/MM/yyyy HH:mm:ss"
+    }}</span>
     <span class="subheader-text article-author">{{ card.author }}</span>
     <span class="subheader-text article-theme">{{ card.theme }}</span>
   </div>

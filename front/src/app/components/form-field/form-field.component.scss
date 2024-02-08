@@ -4,10 +4,32 @@
   margin-bottom: 24px;
 }
 
-.form-field input,
+.form-field input {
+  padding: 5px 15px;
+  font-family: "Inter", sans-serif;
+}
+
+.form-field input {
+  padding: 5px 15px;
+  height: 40px;
+  border-radius: 8px;
+  width: 220px;
+  border: 1px solid black;
+}
+
+.form-field input:focus {
+  border: 1px solid blue;
+}
+
 select {
+  padding: 5px 15px;
   height: 50px;
   border-radius: 8px;
   width: 250px;
   border: 1px solid black;
+}
+
+label,
+input {
+  font-family: "Inter", sans-serif;
 }

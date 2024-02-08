@@ -27,6 +27,7 @@ img {
 
 .header-nav a {
   cursor: pointer;
+  font-family: "Inter", sans-serif;
 }
 
 .active {
@@ -40,12 +41,17 @@ img {
   cursor: pointer;
 }
 
-#responsive-nav {
+.open-sidenav,
+.hidden-sidenav {
   display: none;
 }
 
 @media only screen and (max-width: 650px) {
-  #responsive-nav {
+  .hidden-sidenav {
+    display: none;
+  }
+
+  .open-sidenav {
     display: block;
   }
 
@@ -53,20 +59,11 @@ img {
     display: none;
   }
 
-  .open-sidenav #hamburger-btn {
-    transition-timing-function: ease-in;
-    transition-duration: 200ms;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    position: absolute;
-    top: 40px;
-    left: 50px;
+  .header {
+    position: relative;
   }
 
-  .open-sidenav #hamburger-btn span {
+  #hamburger-btn span {
     height: 3px;
     background-color: black;
     width: 25px;
@@ -102,7 +99,7 @@ img {
     cursor: pointer;
   }
 
-  .hidden-sidenav #hamburger-btn {
+  #hamburger-btn {
     transition-timing-function: ease-in;
     transition-duration: 200ms;
     z-index: 3;
@@ -111,20 +108,23 @@ img {
     gap: 4px;
     cursor: pointer;
     position: absolute;
-    top: 40px;
-    left: -50px;
   }
 
-  .hidden-sidenav #hamburger-btn span {
-    height: 3px;
-    background-color: black;
-    width: 25px;
+  .hamburger-btn-closed {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+  }
+
+  .hamburger-btn-open {
+    position: fixed;
+    top: 40px;
+    left: 30%;
   }
 
   .hidden-sidenav {
     transition-duration: 200ms;
     transition-timing-function: ease-in;
-    display: block;
     position: absolute;
     height: 100vh;
     width: 80vw;
@@ -135,19 +135,24 @@ img {
     border-left: 2px solid black;
   }
 
-  .hidden-sidenav #nav-btn-sidenav {
-    height: 100%;
+  .open-sidenav {
     display: flex;
     flex-direction: column;
     align-items: end;
-    gap: 78%;
-    margin: 50px;
+    gap: 72%;
+    width: 80%;
   }
 
-  .hidden-sidenav #nav-btn-sidenav .nav-btn {
+  .open-sidenav .nav-btn {
     display: flex;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    margin-right: 20px;
+    margin-top: 30px;
+  }
+  .open-sidenav img {
+    margin-right: 20px;
+    margin-bottom: 80px;
   }
 }

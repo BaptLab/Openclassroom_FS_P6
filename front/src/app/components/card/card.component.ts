@@ -25,6 +25,7 @@ export class CardComponent implements OnInit {
     description: '',
   };
 
+  @Input() id: string | null = '';
   @Input() buttonText: string | null = 'Click me !';
   @Input() showButton: boolean = false;
   @Input() btnAction: () => void = () => {};
