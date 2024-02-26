@@ -44,15 +44,10 @@ public class ArticleService {
         List<Long> themeIds = userThemes.stream()
                 .map(UserTheme::getThemeId)
                 .collect(Collectors.toList());
-
-        // Find all articles
         List<Article> allArticles = articleRepository.findAll();
-
-        // Filter articles by themeIds
         List<Article> filteredArticles = allArticles.stream()
-                .filter(article -> themeIds.contains(article.getId()))
+                .filter(article -> themeIds.contains(article.getId() +1 ))
                 .collect(Collectors.toList());
-
         return filteredArticles;
     }
 

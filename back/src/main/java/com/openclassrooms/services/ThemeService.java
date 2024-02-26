@@ -44,11 +44,9 @@ public class ThemeService {
     
 	
 	public List<Theme> findThemesByUserId(Long userId) {
-	    System.out.println("User ID: " + userId);
 	    List<UserTheme> userThemes = userThemeRepository.findByUserId(userId);
 	    List<Long> themeIds = userThemes.stream().map(UserTheme::getThemeId).collect(Collectors.toList());
 	    List<Theme> themes = themeRepository.findAllById(themeIds);
-	    System.out.println("Themes: " + themes);
 	    return themes;
 	}
 

@@ -56,7 +56,6 @@ export class ThemesComponent implements OnInit, OnDestroy {
 
   toggleSubscription(theme: Theme): void {
     const themeId = theme.id.toString();
-
     if (theme.isSubscribed) {
       this.themeService
         .unsubscribeToTheme(this.userId, themeId)

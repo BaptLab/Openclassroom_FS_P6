@@ -66,7 +66,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       .getArticleById(articleId)
       .subscribe(
         (article: Article) => {
-          console.log(article);
           this.article = article;
           this.loadAuthor();
         },
@@ -96,7 +95,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       .subscribe(
         (receivedComments: CommentText[]) => {
           this.comments = receivedComments;
-          console.log('Commentaires reçus de la DB :', receivedComments);
         },
         (error) => {
           console.error('Error fetching comments:', error);
@@ -110,8 +108,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       .postComment(this.userId, this.commentText, this.articleId)
       .subscribe(
         (comment: CommentText) => {
-          console.log('Comment posted successfully:', comment);
-          // Trigger change detection
           this.comments.push(comment);
         },
         (error: Error) => {

@@ -23,6 +23,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
       .subscribe(
         (receivedArticles: Article[]) => {
           this.articles = receivedArticles;
+
           this.sortArticle();
         },
         (error) => {

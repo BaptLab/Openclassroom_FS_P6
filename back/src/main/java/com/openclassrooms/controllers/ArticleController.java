@@ -38,7 +38,6 @@ public class ArticleController {
 			User user = userService.findById(userId);
 			if (user != null) {
 				List<UserTheme> userThemes = userThemeService.findUserThemesByUserId(userId);
-				System.out.println(userThemes);
 				List<Article> articles = articleService.findAllByUserThemes(userThemes);
 
 

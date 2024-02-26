@@ -45,7 +45,6 @@ public class ThemeController {
     public ResponseEntity<?> findAllSubscribedTheme(@PathVariable("id") Long userId) {
         try {
             List<Theme> themes = themeService.findThemesByUserId(userId);
-            System.out.println(themes);
             return ResponseEntity.ok().body(themes);
         } catch (NumberFormatException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request format");
@@ -65,7 +64,6 @@ public class ThemeController {
             }
 
             UserTheme userTheme = userThemeService.subscribeUserToTheme(user, theme);
-
             if (userTheme != null) {
                 return ResponseEntity.ok(new MessageResponse("Vous êtes désormais abonné à ce thème !"));
             } else {
