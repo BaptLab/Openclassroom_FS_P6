@@ -103,7 +103,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   }
 
   postComment(): void {
-    console.log('Data sent:', this.commentText);
     this.commentService
       .postComment(this.userId, this.commentText, this.articleId)
       .subscribe(
@@ -117,16 +116,10 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   }
 
   postResponsiveComment(): void {
-    console.log(
-      'Data sent for responsive comment:',
-      this.responsiveCommentText
-    );
     this.commentService
       .postComment(this.userId, this.responsiveCommentText, this.articleId)
       .subscribe(
         (comment: CommentText) => {
-          console.log('Comment posted successfully:', comment);
-          // Trigger change detection
           this.comments.push(comment);
         },
         (error: Error) => {

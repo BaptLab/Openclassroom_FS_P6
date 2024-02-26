@@ -47,18 +47,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   updateUser(user: User): void {
-    console.log(
-      'Data passed in request : ',
-      'userId :',
-      this.userId,
-      'updatedUser : ',
-      user
-    );
     this.userService
       .updateUser(this.userId, user)
       .subscribe((updatedUser: User) => {
         if (updatedUser != null) {
-          console.log('User updated successfully!', updatedUser);
           // this.router.navigate(['/articles']);
         } else {
           console.error('Error updating the user :/');
@@ -91,7 +83,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const themeId = theme.id.toString();
 
     if (!theme.isSubscribed) {
-      console.log('Je me désabonne');
       this.themeService
         .unsubscribeToTheme(this.userId, themeId)
         .subscribe(() => {
@@ -101,8 +92,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           theme.isSubscribed = true;
         });
     } else {
-      console.log('Je mabonne');
-
       this.themeService.subscribeToTheme(this.userId, themeId).subscribe(() => {
         this.subscribedThemes.push(theme.id);
         theme.isSubscribed = false;
